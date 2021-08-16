@@ -1,4 +1,4 @@
-package com.pip.deepfakes.views.dankeschön;
+package com.pip.deepfakes.views.ueberfuehredenboesewicht;
 
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.router.Route;
@@ -7,15 +7,15 @@ import com.pip.deepfakes.views.MainLayout;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 
-@PageTitle("Dankeschön")
-@Route(value = "thankyou", layout = MainLayout.class)
-@Tag("dankeschön-view")
-@JsModule("./views/dankeschön/dankeschön-view.ts")
-public class DankeschönView extends LitTemplate {
+@PageTitle("Überführe den Bösewicht")
+@Route(value = "solve", layout = MainLayout.class)
+@Tag("ueberfuehreden-boesewicht-view")
+@JsModule("./views/ueberfuehredenboesewicht/ueberfuehreden-boesewicht-view.ts")
+public class UeberfuehredenBoesewichtView extends LitTemplate {
 
     // This is the Java companion file of a design
     // You can find the design file inside /frontend/views/
 
-    public DankeschönView() {
+    public UeberfuehredenBoesewichtView() {
     }
 }

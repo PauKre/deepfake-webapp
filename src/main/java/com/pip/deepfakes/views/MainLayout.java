@@ -19,15 +19,13 @@ import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.pip.deepfakes.views.MainLayout;
 import com.pip.deepfakes.views.wirbrauchendeinehilfe.WirbrauchendeineHilfeView;
-import com.pip.deepfakes.views.lerneetwasüberdeepfakes.LerneetwasüberDeepfakesView;
+import com.pip.deepfakes.views.lerneetwasueberdeepfakes.LerneetwasueberDeepfakesView;
 import com.pip.deepfakes.views.testedeinwissen.TestedeinWissenView;
 import com.pip.deepfakes.views.erkennediedeepfakes.ErkennedieDeepfakesView;
-import com.pip.deepfakes.views.überführedenbösewicht.ÜberführedenBösewichtView;
-import com.pip.deepfakes.views.dankeschön.DankeschönView;
+import com.pip.deepfakes.views.ueberfuehredenboesewicht.UeberfuehredenBoesewichtView;
+import com.pip.deepfakes.views.dankeschoen.DankeschoenView;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
@@ -127,15 +125,15 @@ public class MainLayout extends AppLayout {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
                 new MenuItemInfo("Wir brauchen deine Hilfe", "la la-eye", WirbrauchendeineHilfeView.class), //
 
-                new MenuItemInfo("Lerne etwas über Deepfakes", "la la-file", LerneetwasüberDeepfakesView.class), //
+                new MenuItemInfo("Lerne etwas über Deepfakes", "la la-file", LerneetwasueberDeepfakesView.class), //
 
                 new MenuItemInfo("Teste dein Wissen", "la la-file", TestedeinWissenView.class), //
 
                 new MenuItemInfo("Erkenne die Deepfakes", "la la-file", ErkennedieDeepfakesView.class), //
 
-                new MenuItemInfo("Überführe den Bösewicht", "la la-file", ÜberführedenBösewichtView.class), //
+                new MenuItemInfo("Überführe den Bösewicht", "la la-file", UeberfuehredenBoesewichtView.class), //
 
-                new MenuItemInfo("Dankeschön", "la la-file", DankeschönView.class), //
+                new MenuItemInfo("Dankeschön", "la la-file", DankeschoenView.class), //
 
         };
         List<Tab> tabs = new ArrayList<>();

@@ -2,8 +2,8 @@ import { html, LitElement, customElement } from 'lit-element';
 
 
 
-@customElement('überführeden-bösewicht-view')
-export class ÜberführedenBösewichtView extends LitElement {
+@customElement('Ueberfuehreden-boesewicht-view')
+export class UeberfuehredenBoesewichtView extends LitElement {
   createRenderRoot() {
     // Do not use a shadow root
     return this;

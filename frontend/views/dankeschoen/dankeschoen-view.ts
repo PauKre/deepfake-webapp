@@ -2,8 +2,8 @@ import { html, LitElement, customElement } from 'lit-element';
 
 
 
-@customElement('lerneetwasüber-deepfakes-view')
-export class LerneetwasüberDeepfakesView extends LitElement {
+@customElement('dankeschoen-view')
+export class DankeschoenView extends LitElement {
   createRenderRoot() {
     // Do not use a shadow root
     return this;

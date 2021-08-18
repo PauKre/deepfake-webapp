@@ -9,6 +9,7 @@ export class LerneetwasueberDeepfakesView extends LitElement {
     return this;
   }
   render() {
-    return html`<div>Content placeholder</div>`;
+
+    return html`<button>Content placeholder test123</button>`;
   }
 }

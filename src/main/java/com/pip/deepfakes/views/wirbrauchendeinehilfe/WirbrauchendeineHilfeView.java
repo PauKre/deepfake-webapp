@@ -7,6 +7,8 @@ import com.pip.deepfakes.views.MainLayout;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 @PageTitle("Wir brauchen deine Hilfe")
 @Route(value = "help", layout = MainLayout.class)

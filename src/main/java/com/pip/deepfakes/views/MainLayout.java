@@ -35,7 +35,7 @@ import com.vaadin.flow.component.avatar.Avatar;
  * The main view is a top-level placeholder for other views.
  */
 @PWA(name = "Deepfake Webapp", shortName = "Deepfake Webapp", enableInstallPrompt = false)
-@Theme(themeFolder = "deepfakewebapp", variant = Lumo.DARK)
+@Theme(value = Lumo.class, themeFolder = "deepfakewebapp", variant = Lumo.DARK)
 @PageTitle("Main")
 public class MainLayout extends AppLayout {
 

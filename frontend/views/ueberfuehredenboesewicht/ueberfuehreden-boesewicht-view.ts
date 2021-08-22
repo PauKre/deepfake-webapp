@@ -2,7 +2,7 @@ import { html, LitElement, customElement } from 'lit-element';
 
 
 
-@customElement('Ueberfuehreden-boesewicht-view')
+@customElement('ueberfuehreden-boesewicht-view')
 export class UeberfuehredenBoesewichtView extends LitElement {
   createRenderRoot() {
     // Do not use a shadow root

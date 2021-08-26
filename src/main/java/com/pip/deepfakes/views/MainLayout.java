@@ -35,7 +35,7 @@ import com.vaadin.flow.component.avatar.Avatar;
  * The main view is a top-level placeholder for other views.
  */
 @PWA(name = "Deepfake Webapp", shortName = "Deepfake Webapp", enableInstallPrompt = false)
-@Theme(value = Lumo.class, themeFolder = "deepfakewebapp", variant = Lumo.DARK)
+@Theme(themeFolder = "deepfakewebapp", variant = Lumo.DARK)
 @PageTitle("Main")
 public class MainLayout extends AppLayout {
 
@@ -69,22 +69,33 @@ public class MainLayout extends AppLayout {
     private H1 viewTitle;
 
     public MainLayout() {
-        setPrimarySection(Section.DRAWER);
-        addToNavbar(true, createHeaderContent());
-        menu = createMenu();
-        addToDrawer(createDrawerContent(menu));
+        HorizontalLayout header = createHeader();
+        menu = createMenuTabs();
+        addToNavbar(createTopBar(header, menu));
     }
 
-    private Component createHeaderContent() {
-        HorizontalLayout layout = new HorizontalLayout();
-        layout.setClassName("sidemenu-header");
-        layout.getThemeList().set("dark", true);
+    private VerticalLayout createTopBar(HorizontalLayout header, Tabs menu) {
+        VerticalLayout layout = new VerticalLayout();
+        layout.getThemeList().add("dark");
         layout.setWidthFull();
         layout.setSpacing(false);
+        layout.setPadding(false);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
-        layout.add(new DrawerToggle());
-        viewTitle = new H1();
-        layout.add(viewTitle);
+        layout.add(header, menu);
+        return layout;
+    }
+
+    private HorizontalLayout createHeader() {
+        HorizontalLayout layout = new HorizontalLayout();
+        layout.setClassName("topmenu-header");
+        layout.setPadding(false);
+        layout.setSpacing(false);
+        layout.setWidthFull();
+        layout.setAlignItems(FlexComponent.Alignment.CENTER);
+        Image logo = new Image("images/logo.png", "Deepfakes Webapp logo");
+        logo.setId("logo");
+        layout.add(logo);
+        layout.add(new H1("Deepfakes Webapp"));
 
         Avatar avatar = new Avatar();
         avatar.addClassNames("ms-auto", "me-m");
@@ -93,28 +104,9 @@ public class MainLayout extends AppLayout {
         return layout;
     }
 
-    private Component createDrawerContent(Tabs menu) {
-        VerticalLayout layout = new VerticalLayout();
-        layout.setClassName("sidemenu-menu");
-        layout.setSizeFull();
-        layout.setPadding(false);
-        layout.setSpacing(false);
-        layout.getThemeList().set("spacing-s", true);
-        layout.setAlignItems(FlexComponent.Alignment.STRETCH);
-        HorizontalLayout logoLayout = new HorizontalLayout();
-        logoLayout.setId("logo");
-        logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        logoLayout.add(new Image("images/logo.png", "Deepfake Webapp logo"));
-        logoLayout.add(new H1("Deepfake Webapp"));
-        layout.add(logoLayout, menu);
-        return layout;
-    }
-
-    private Tabs createMenu() {
+    private Tabs createMenuTabs() {
         final Tabs tabs = new Tabs();
-        tabs.setOrientation(Tabs.Orientation.VERTICAL);
-        tabs.addThemeVariants(TabsVariant.LUMO_MINIMAL);
-        tabs.setId("tabs");
+        tabs.getStyle().set("max-width", "100%");
         for (Tab menuTab : createMenuItems()) {
             tabs.add(menuTab);
         }
@@ -163,7 +155,6 @@ public class MainLayout extends AppLayout {
     protected void afterNavigation() {
         super.afterNavigation();
         getTabForComponent(getContent()).ifPresent(menu::setSelectedTab);
-        viewTitle.setText(getCurrentPageTitle());
     }
 
     private Optional<Tab> getTabForComponent(Component component) {
@@ -171,8 +162,5 @@ public class MainLayout extends AppLayout {
                 .findFirst().map(Tab.class::cast);
     }
 
-    private String getCurrentPageTitle() {
-        PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
-        return title == null ? "" : title.value();
-    }
+
 }

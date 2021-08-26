@@ -66,7 +66,6 @@ public class MainLayout extends AppLayout {
     }
 
     private final Tabs menu;
-    private H1 viewTitle;
 
     public MainLayout() {
         HorizontalLayout header = createHeader();

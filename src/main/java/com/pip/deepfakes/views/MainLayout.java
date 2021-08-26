@@ -116,15 +116,15 @@ public class MainLayout extends AppLayout {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
                 new MenuItemInfo("Wir brauchen deine Hilfe", "la la-eye", WirbrauchendeineHilfeView.class), //
 
-                new MenuItemInfo("Lerne etwas über Deepfakes", "la la-file", LerneetwasueberDeepfakesView.class), //
+                new MenuItemInfo("Lerne etwas über Deepfakes", "la la-book", LerneetwasueberDeepfakesView.class), //
 
-                new MenuItemInfo("Teste dein Wissen", "la la-file", TestedeinWissenView.class), //
+                new MenuItemInfo("Teste dein Wissen", "la la-lightbulb", TestedeinWissenView.class), //
 
-                new MenuItemInfo("Erkenne die Deepfakes", "la la-file", ErkennedieDeepfakesView.class), //
+                new MenuItemInfo("Erkenne die Deepfakes", "la la-user-check", ErkennedieDeepfakesView.class), //
 
-                new MenuItemInfo("Überführe den Bösewicht", "la la-file", UeberfuehredenBoesewichtView.class), //
+                new MenuItemInfo("Überführe den Bösewicht", "la la-users", UeberfuehredenBoesewichtView.class), //
 
-                new MenuItemInfo("Dankeschön", "la la-file", DankeschoenView.class), //
+                new MenuItemInfo("Dankeschön", "la la-trophy", DankeschoenView.class), //
 
         };
         List<Tab> tabs = new ArrayList<>();

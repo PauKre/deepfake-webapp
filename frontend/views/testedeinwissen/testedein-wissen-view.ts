@@ -1,63 +1,69 @@
-import { html, LitElement, customElement } from 'lit-element';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
-import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
+import { LitElement, html, css, customElement } from 'lit-element';
 import '@vaadin/vaadin-select/src/vaadin-select.js';
 import '@vaadin/vaadin-list-box/src/vaadin-list-box.js';
 import '@vaadin/vaadin-item/src/vaadin-item.js';
+import '@vaadin/vaadin-checkbox/src/vaadin-checkbox-group.js';
+import '@vaadin/vaadin-checkbox/src/vaadin-checkbox.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-vertical-layout.js';
+import '@vaadin/vaadin-button/src/vaadin-button.js';
+import '@vaadin/vaadin-ordered-layout/src/vaadin-horizontal-layout.js';
 
 @customElement('testedein-wissen-view')
 export class TestedeinWissenView extends LitElement {
-  createRenderRoot() {
-    // Do not use a shadow root
-    return this;
+  static get styles() {
+    return css`
+      :host {
+          display: block;
+          height: 100%;
+      }
+      `;
   }
+
   render() {
     return html`
-<vaadin-horizontal-layout class="content" style=" background-color:white; width: 100%; height: 100%;">
- <vaadin-vertical-layout theme="spacing" id="vaadinVerticalLayout" style="width: 15%;"></vaadin-vertical-layout>
- <vaadin-vertical-layout theme="spacing" id="vaadinVerticalLayout1" style="width: 70%;">
-<div >
-  <h2 responsive plain-text style="color:#B02E0C; margin: var(--lumo-space-m); flex-shrink: 1;">Werde zum Deepfake Experten!
-</h2>
-<h3 responsive plain-text style="color:#B02E0C; margin: var(--lumo-space-m); flex-shrink: 1;">
-Du bist schon einen Schritt näher, um dem Waschbär zu entlarven. </br> 
-Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.
-</h3>
-</div>
-  <vaadin-horizontal-layout spacing="false" responsive :middle :center id="vaadinHorizontalLayout1">
-   <img id="catImgId" src="images/testedeinwissen/squirrel.png" responsive style=" width: 50%; height: 60%;">
-   <vaadin-vertical-layout spacing="false" responsive size-auto margin="false" :right>
-    <vaadin-label plain-text :center>
-      Label 
-    </vaadin-label>
-    <vaadin-select value="Item one">
-     <template>
-      <vaadin-list-box selected="0">
-       <vaadin-item selected>
-         Item one 
-       </vaadin-item>
-       <vaadin-item>
-         Item two 
-       </vaadin-item>
-       <vaadin-item>
-         Item three 
-       </vaadin-item>
-      </vaadin-list-box>
-     </template>
-    </vaadin-select>
-    <vaadin-horizontal-layout>
-     <vaadin-button responsive id="checkResultBttnId" plain-text>
+<vaadin-horizontal-layout class="content" style="width: 100%; align-items: flex-start; justify-content: center; background-color:white; height: 100%;">
+ <vaadin-vertical-layout theme="spacing" style="align-self: flex-start; align-items: center; justify-content: flex-start; width: 15%;"></vaadin-vertical-layout>
+ <vaadin-vertical-layout style="align-self: stretch; align-items: center; justify-content: flex-start; width: 70%; height: 97%; padding: var(--lumo-space-m);">
+  <h2 style="color:#B02E0C; align-self: center; height: 3%;">Werde zum Deepfake Experten!</h2>
+  <h3 style="color:#B02E0C; align-self: center; flex-grow: 0; height: 9%;">Du bist schon einen Schritt näher, um dem Waschbär zu entlarven.<br style="height: 1%;">Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.</h3>
+  <vaadin-horizontal-layout style="align-items: flex-start; width: 100%; height: 60%; align-self: flex-start;">
+   <vaadin-vertical-layout style="width: 40%; align-self: flex-start; align-items: flex-start; justify-content: flex-start; height: 100%;">
+    <img id="squirrelImgId" style="width: 100%; height: 100%;" src="images/testedeinwissen/squirrel.png">
+   </vaadin-vertical-layout>
+   <vaadin-vertical-layout theme="spacing" style="width: 60%; height: 100%;">
+    <h5 id="questionId" style="align-self: center; color:#B02E0C;">Questionss ??</h5>
+    <vaadin-checkbox-group id="questionResId " style="color:#B02E0C; flex-grow: 0; flex-shrink: 1; height: 100%; align-self: center;" theme="vertical">
+     <vaadin-checkbox id="vaadinCheckbox" style="background-color:#8EB1C7; flex-grow: 0; flex-shrink: 1; margin: var(--lumo-space-s);" value="1">
+       Answer 1 
+     </vaadin-checkbox>
+     <vaadin-checkbox style="background-color:#8EB1C7; margin: var(--lumo-space-s);" value="2">
+       Answer 2 
+     </vaadin-checkbox>
+     <vaadin-checkbox style="background-color:#8EB1C7; margin: var(--lumo-space-s);" value="3">
+       Answer 3 
+     </vaadin-checkbox>
+    </vaadin-checkbox-group>
+    <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1; flex-shrink: 1; width: 100%; justify-content: space-around;">
+     <vaadin-button id="prevQuestBttnId" style="color:white; background-color:#B02E0C;">
+       Previous 
+     </vaadin-button>
+     <vaadin-button id="checkResultBttnId" style="color:white ; background-color:#B02E0C;">
        Check Result 
      </vaadin-button>
-     <vaadin-button responsive id="nextQuestBttnId" plain-text :right>
+     <vaadin-button style="color:white ; background-color:#B02E0C;" id="nextQuestBttnId">
        Next 
      </vaadin-button>
     </vaadin-horizontal-layout>
    </vaadin-vertical-layout>
   </vaadin-horizontal-layout>
  </vaadin-vertical-layout>
- <vaadin-vertical-layout theme="spacing" style="width: 15%;"></vaadin-vertical-layout>
+ <vaadin-vertical-layout theme="spacing" style="align-self: flex-start; align-items: center; justify-content: flex-start; width: 15%;"></vaadin-vertical-layout>
 </vaadin-horizontal-layout>
 `;
+  }
+
+  // Remove this method to render the contents of this view inside Shadow DOM
+  createRenderRoot() {
+    return this;
   }
 }

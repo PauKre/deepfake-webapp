@@ -112,10 +112,10 @@ public class TestedeinWissenView extends LitTemplate {
     	// question 1
     	HashMap<String, String> quesResp1 = new HashMap<>();
     	ArrayList<String> posssibleResp1 = new ArrayList<String>();
-    	quesResp1.put("question1", "Ansuwer1");
+    	quesResp1.put("question1", "Answer1");
     	posssibleResp1.add(quesResp1.get("question1"));
-    	posssibleResp1.add("Ansuwer2");
-    	posssibleResp1.add("Ansuwer3");
+    	posssibleResp1.add("Answer2");
+    	posssibleResp1.add("Answer3");
     	Collections.shuffle(posssibleResp1);
 		HashMap<HashMap<String, String>, ArrayList<String>> questionsDictionary1
 				=new HashMap <HashMap<String, String>, ArrayList<String>>();
@@ -128,8 +128,8 @@ public class TestedeinWissenView extends LitTemplate {
     	ArrayList<String> posssibleResp2 = new ArrayList<String>();
     	quesResp2.put("question2", "Ansuwer2");
     	posssibleResp2.add(quesResp2.get("question2"));
-    	posssibleResp2.add("Ansuwer2");
-    	posssibleResp2.add("Ansuwer3");
+    	posssibleResp2.add("Answer2");
+    	posssibleResp2.add("Answer3");
     	Collections.shuffle(posssibleResp2);
 		HashMap<HashMap<String, String>, ArrayList<String>> questionsDictionary2
 				=new HashMap <HashMap<String, String>, ArrayList<String>>();

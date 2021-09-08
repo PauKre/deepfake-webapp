@@ -44,12 +44,15 @@ import com.vaadin.flow.component.avatar.Avatar;
 @PageTitle("Main")
 public class MainLayout extends AppLayout {
 
+    // progress bar on top
     public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 0.0);
 
     public static final Tabs tabs = new Tabs();
 
+    // keep track of pages visited (correct progress bar behaviour)
     public static Boolean[] clickedTabs = new Boolean[6];
 
+    // listener for page switches
     public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
 
     public static class MenuItemInfo {
@@ -128,6 +131,11 @@ public class MainLayout extends AppLayout {
         return tabs;
     }
 
+    /**
+     * creates a listener on top tab bar
+     * make progress on page switch, but only if it hasn't been clicked yet
+     * TODO: extend the listener to correct page change behavior and build in barriers to impose the order of the learning platform
+     */
     private void createListener(){
         listener = selectedChangeEvent -> {
             double value = learnprogress.getValue() + 1;

@@ -2,3 +2,12 @@ wirbrauchendeine-hilfe-view {
   background-color: black;
   display: block;
 }
+
+#prezi{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 67.5%;
+  height: 70vh;
+}

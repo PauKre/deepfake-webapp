@@ -1,20 +1,25 @@
 package com.pip.deepfakes.views;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.progressbar.ProgressBar;
+import com.vaadin.flow.component.progressbar.ProgressBarVariant;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
@@ -35,9 +40,20 @@ import com.vaadin.flow.component.avatar.Avatar;
  * The main view is a top-level placeholder for other views.
  */
 @PWA(name = "Deepfake Webapp", shortName = "Deepfake Webapp", enableInstallPrompt = false)
-@Theme(value = Lumo.class, themeFolder = "deepfakewebapp", variant = Lumo.DARK)
+@Theme(themeFolder = "deepfakewebapp", variant = Lumo.DARK)
 @PageTitle("Main")
 public class MainLayout extends AppLayout {
+
+    // progress bar on top
+    public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 0.0);
+
+    public static final Tabs tabs = new Tabs();
+
+    // keep track of pages visited (correct progress bar behaviour)
+    public static Boolean[] clickedTabs = new Boolean[6];
+
+    // listener for page switches
+    public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
 
     public static class MenuItemInfo {
 
@@ -66,25 +82,35 @@ public class MainLayout extends AppLayout {
     }
 
     private final Tabs menu;
-    private H1 viewTitle;
 
     public MainLayout() {
-        setPrimarySection(Section.DRAWER);
-        addToNavbar(true, createHeaderContent());
-        menu = createMenu();
-        addToDrawer(createDrawerContent(menu));
+        HorizontalLayout header = createHeader();
+        menu = createMenuTabs();
+        addToNavbar(createTopBar(header, menu));
     }
 
-    private Component createHeaderContent() {
-        HorizontalLayout layout = new HorizontalLayout();
-        layout.setClassName("sidemenu-header");
-        layout.getThemeList().set("dark", true);
+    private VerticalLayout createTopBar(HorizontalLayout header, Tabs menu) {
+        VerticalLayout layout = new VerticalLayout();
+        layout.getThemeList().add("dark");
         layout.setWidthFull();
-        layout.setSpacing(false);
+        layout.setSpacing(true);
+        layout.setPadding(true);
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
-        layout.add(new DrawerToggle());
-        viewTitle = new H1();
-        layout.add(viewTitle);
+        layout.add(header, menu, learnprogress);
+        return layout;
+    }
+
+    private HorizontalLayout createHeader() {
+        HorizontalLayout layout = new HorizontalLayout();
+        layout.setClassName("topmenu-header");
+        layout.setPadding(false);
+        layout.setSpacing(false);
+        layout.setWidthFull();
+        layout.setAlignItems(FlexComponent.Alignment.CENTER);
+        Image logo = new Image("images/logo.png", "Deepfakes Webapp logo");
+        logo.setId("logo");
+        layout.add(logo);
+        layout.add(new H1("Deepfakes Webapp"));
 
         Avatar avatar = new Avatar();
         avatar.addClassNames("ms-auto", "me-m");
@@ -93,47 +119,46 @@ public class MainLayout extends AppLayout {
         return layout;
     }
 
-    private Component createDrawerContent(Tabs menu) {
-        VerticalLayout layout = new VerticalLayout();
-        layout.setClassName("sidemenu-menu");
-        layout.setSizeFull();
-        layout.setPadding(false);
-        layout.setSpacing(false);
-        layout.getThemeList().set("spacing-s", true);
-        layout.setAlignItems(FlexComponent.Alignment.STRETCH);
-        HorizontalLayout logoLayout = new HorizontalLayout();
-        logoLayout.setId("logo");
-        logoLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        logoLayout.add(new Image("images/logo.png", "Deepfake Webapp logo"));
-        logoLayout.add(new H1("Deepfake Webapp"));
-        layout.add(logoLayout, menu);
-        return layout;
-    }
-
-    private Tabs createMenu() {
-        final Tabs tabs = new Tabs();
-        tabs.setOrientation(Tabs.Orientation.VERTICAL);
-        tabs.addThemeVariants(TabsVariant.LUMO_MINIMAL);
-        tabs.setId("tabs");
+    private Tabs createMenuTabs() {
+        learnprogress.addThemeVariants(ProgressBarVariant.LUMO_SUCCESS);
+        Arrays.fill(clickedTabs, Boolean.FALSE);
+        createListener();
+        tabs.addSelectedChangeListener(listener);
+        tabs.getStyle().set("max-width", "100%");
         for (Tab menuTab : createMenuItems()) {
             tabs.add(menuTab);
         }
         return tabs;
     }
 
+    /**
+     * creates a listener on top tab bar
+     * make progress on page switch, but only if it hasn't been clicked yet
+     * TODO: extend the listener to correct page change behavior and build in barriers to impose the order of the learning platform
+     */
+    private void createListener(){
+        listener = selectedChangeEvent -> {
+            double value = learnprogress.getValue() + 1;
+            if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]) {
+                clickedTabs[tabs.getSelectedIndex()] = true;
+                learnprogress.setValue(value);
+            }
+        };
+    }
+
     private List<Tab> createMenuItems() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //
                 new MenuItemInfo("Wir brauchen deine Hilfe", "la la-eye", WirbrauchendeineHilfeView.class), //
 
-                new MenuItemInfo("Lerne etwas über Deepfakes", "la la-file", LerneetwasueberDeepfakesView.class), //
+                new MenuItemInfo("Lerne etwas über Deepfakes", "la la-book", LerneetwasueberDeepfakesView.class), //
 
-                new MenuItemInfo("Teste dein Wissen", "la la-file", TestedeinWissenView.class), //
+                new MenuItemInfo("Teste dein Wissen", "la la-lightbulb", TestedeinWissenView.class), //
 
-                new MenuItemInfo("Erkenne die Deepfakes", "la la-file", ErkennedieDeepfakesView.class), //
+                new MenuItemInfo("Erkenne die Deepfakes", "la la-user-check", ErkennedieDeepfakesView.class), //
 
-                new MenuItemInfo("Überführe den Bösewicht", "la la-file", UeberfuehredenBoesewichtView.class), //
+                new MenuItemInfo("Überführe den Bösewicht", "la la-users", UeberfuehredenBoesewichtView.class), //
 
-                new MenuItemInfo("Dankeschön", "la la-file", DankeschoenView.class), //
+                new MenuItemInfo("Dankeschön", "la la-trophy", DankeschoenView.class), //
 
         };
         List<Tab> tabs = new ArrayList<>();
@@ -163,7 +188,6 @@ public class MainLayout extends AppLayout {
     protected void afterNavigation() {
         super.afterNavigation();
         getTabForComponent(getContent()).ifPresent(menu::setSelectedTab);
-        viewTitle.setText(getCurrentPageTitle());
     }
 
     private Optional<Tab> getTabForComponent(Component component) {
@@ -171,8 +195,5 @@ public class MainLayout extends AppLayout {
                 .findFirst().map(Tab.class::cast);
     }
 
-    private String getCurrentPageTitle() {
-        PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
-        return title == null ? "" : title.value();
-    }
+
 }

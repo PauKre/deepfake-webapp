@@ -1,6 +1,7 @@
 package com.pip.deepfakes.views.testedeinwissen;
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.PropertyDescriptor;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -8,6 +9,7 @@ import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.pip.deepfakes.views.MainLayout;
@@ -18,6 +20,8 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dialog.Dialog;
 //import com.vaadin.flow.component.charts.model.style.Style;
 import java.util.*;
+import java.io.*;  
+import java.net.URL;
 
 
 import javax.validation.OverridesAttribute;
@@ -65,9 +69,20 @@ public class TestedeinWissenView extends LitTemplate {
 		String respomse = questi_response .values().iterator().next();
 				
 		Dialog dialog = new Dialog();
-		dialog.add(respomse);
-		//dialog.setWidth("400px");
-		//dialog.setHeight("150px");
+		String[] respomse_list = respomse.split("\\|");
+		
+		TextArea t = new TextArea();
+		t.setWidth("400px");
+		t.getStyle().set("background-color", "white");
+		t.getStyle().set("color", "#B02E0C");
+		t.setValue(respomse_list[0] + "\n" + respomse_list[1]);
+		dialog.add(t);
+		
+		//String result = "<div>" + respomse_list[0] + "<br>" + respomse_list[1] + "</div>";  
+        //Html html = new Html(result);
+        //dialog.add(html);
+		
+		
 		dialog.open();
 	}
 
@@ -90,7 +105,7 @@ public class TestedeinWissenView extends LitTemplate {
 		for (String response : posssibleResponses) {
 			Checkbox vaadinCheckbox =new Checkbox();
 			vaadinCheckbox.setLabel(response);
-			vaadinCheckbox.getStyle().set("background-color", "#8EB1C7");
+			vaadinCheckbox.getStyle().set("background-color", "#B02E0C");
 			vaadinCheckbox.getStyle().set("flex-grow", "0");
 			vaadinCheckbox.getStyle().set("flex-shrink", "1");
 			vaadinCheckbox.getStyle().set("margin", "var(--lumo-space-s)");
@@ -109,54 +124,61 @@ public class TestedeinWissenView extends LitTemplate {
 	// generate a dictionary of possibles questions
     private void getQuestions() {
     	
-    	// question 1
-    	HashMap<String, String> quesResp1 = new HashMap<>();
-    	ArrayList<String> posssibleResp1 = new ArrayList<String>();
-    	quesResp1.put("question1", "Answer1");
-    	posssibleResp1.add(quesResp1.get("question1"));
-    	posssibleResp1.add("Answer2");
-    	posssibleResp1.add("Answer3");
-    	Collections.shuffle(posssibleResp1);
-		HashMap<HashMap<String, String>, ArrayList<String>> questionsDictionary1
-				=new HashMap <HashMap<String, String>, ArrayList<String>>();
-		questionsDictionary1.put(quesResp1, posssibleResp1);
+		try {
+			
+			String file_path = new File(".").getCanonicalPath();
+			file_path  = file_path  + "\\src\\main\\java\\com\\pip\\deepfakes\\views\\testedeinwissen\\testedeinwissenquestions.txt";
+			file_path = file_path.replace("\\", "/");
+			
+			File file=new File(file_path);    //creates a new file instance  
+			FileReader fr=new FileReader(file);   //reads the file  
+			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
+			StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters  
+			String line;  
+			
+			String question="";
+			HashMap<String, String> quesResp = new HashMap<>();
+	    	ArrayList<String> posssibleResp = new ArrayList<String>();
+			
+			while((line=br.readLine())!=null)  
+			{  
+				if (line.contains("?")) {
+					question = line;
+				}
+				else {
+					if (line.contains("Next-Question")) {
+						HashMap<HashMap<String, String>, ArrayList<String>> questionsDictionary
+						=new HashMap <HashMap<String, String>, ArrayList<String>>();
+						questionsDictionary.put(quesResp, posssibleResp);
+						
+						this.questionsDictionary.add(questionsDictionary);
+						
+						quesResp = new HashMap<>();
+						posssibleResp = new ArrayList<String>();
+					}
+					else {
+						if (line.contains("Antwort")) {
+							quesResp.put(question, line);
+						}
+						else {
+							posssibleResp.add(line);
+						}
+					}
+				}
+			}
+			
+			fr.close();    //closes the stream and release the resources  
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   //reads the file  
+ catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	
     	
-    	// question 2    	
-    	HashMap<String, String> quesResp2 = new HashMap<>();
-    	ArrayList<String> posssibleResp2 = new ArrayList<String>();
-    	quesResp2.put("question2", "Ansuwer2");
-    	posssibleResp2.add(quesResp2.get("question2"));
-    	posssibleResp2.add("Answer2");
-    	posssibleResp2.add("Answer3");
-    	Collections.shuffle(posssibleResp2);
-		HashMap<HashMap<String, String>, ArrayList<String>> questionsDictionary2
-				=new HashMap <HashMap<String, String>, ArrayList<String>>();
-		questionsDictionary2.put(quesResp2, posssibleResp2);
-    	
-    	
-    	// question 3    	
-    	HashMap<String, String> quesResp3 = new HashMap<>();
-    	ArrayList<String> posssibleResp3 = new ArrayList<String>();
-    	quesResp3.put("question3", "Ansuwer3");
-    	posssibleResp3.add(quesResp3.get("question3"));
-    	posssibleResp3.add("Ansuwer2");
-    	posssibleResp3.add("Ansuwer3");
-    	Collections.shuffle(posssibleResp3);
-		HashMap<HashMap<String, String>, ArrayList<String>> questionsDictionary3
-				=new HashMap <HashMap<String, String>, ArrayList<String>>();
-		questionsDictionary3.put(quesResp3, posssibleResp3);
-    	
-    	
-    	
-//    	HashMap<HashMap<String, String>, ArrayList<String>> questionsDictionary = new HashMap <HashMap<String, String>, ArrayList<String>>();
-
-    	this.questionsDictionary.add(questionsDictionary1);
-		this.questionsDictionary.add(questionsDictionary2);
-		this.questionsDictionary.add(questionsDictionary3);
-
-    	//return questionsDictionary;
 	}
 
 }

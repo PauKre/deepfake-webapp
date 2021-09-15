@@ -1,8 +1,5 @@
 package com.pip.deepfakes.views.testedeinwissen;
 
-import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.PropertyDescriptor;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
@@ -13,18 +10,12 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.pip.deepfakes.views.MainLayout;
-import com.vaadin.flow.component.PropertyDescriptors;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dialog.Dialog;
 //import com.vaadin.flow.component.charts.model.style.Style;
 import java.util.*;
-import java.io.*;  
-import java.net.URL;
-
-
-import javax.validation.OverridesAttribute;
+import java.io.*;
 
 @PageTitle("Teste dein Wissen")
 @Route(value = "quiz", layout = MainLayout.class)
@@ -98,7 +89,7 @@ public class TestedeinWissenView extends LitTemplate {
 		HashMap<HashMap<String, String>, ArrayList<String>> nextQuestionsDictionary = this.questionsDictionary.get(indx);
 		HashMap<String, String> quesResp = nextQuestionsDictionary.keySet().iterator().next();
 
-		this.questionId.setText(quesResp.keySet().iterator().next());
+		this.questionId.setText(String.valueOf(indx +1)+ ". " + quesResp.keySet().iterator().next()) ;
 		this.questionResId.removeAll();
 
 		ArrayList<String> posssibleResponses = nextQuestionsDictionary.get(quesResp);
@@ -168,6 +159,7 @@ public class TestedeinWissenView extends LitTemplate {
 			}
 			
 			fr.close();    //closes the stream and release the resources  
+			Collections.shuffle(this.questionsDictionary);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

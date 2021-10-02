@@ -72,7 +72,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 		if (respomse.equals(choice)) {
 			t.setValue("Richtig" + "\n" + raison);
 		}else {
-			t.setValue("Falsche" + "\n" + raison);
+			t.setValue("Falsch" + "\n" + raison);
 		}
 		
 		dialog.add(t);

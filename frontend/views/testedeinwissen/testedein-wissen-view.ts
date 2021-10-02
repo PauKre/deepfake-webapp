@@ -25,7 +25,7 @@ export class TestedeinWissenView extends LitElement {
  <vaadin-vertical-layout theme="spacing" style="align-self: flex-start; align-items: center; justify-content: flex-start; width: 15%;"></vaadin-vertical-layout>
  <vaadin-vertical-layout style="align-self: stretch; align-items: center; justify-content: flex-start; width: 70%; height: 97%; padding: var(--lumo-space-m);">
   <h2 style="color:#B02E0C; align-self: center; height: 3%;">Werde zum Deepfake Experten!</h2>
-  <h3 style="color:#B02E0C; align-self: center; flex-grow: 0; height: 9%;">Du bist schon einen Schritt näher, um dem Waschbär zu entlarven.<br style="height: 1%;">Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.</h3>
+  <h3>Du bist schon einen Schritt n&auml;her, um dem Waschb&auml;r zu entlarven.<br style="height: 1%;">Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.</h3>
   <vaadin-horizontal-layout style="align-items: flex-start; width: 100%; height: 60%; align-self: flex-start;">
    <vaadin-vertical-layout style="width: 40%; align-self: flex-start; align-items: flex-start; justify-content: flex-start; height: 100%;">
     <img id="squirrelImgId" style="width: 100%; height: 100%;" src="images/testedeinwissen/squirrel.png">
@@ -51,7 +51,7 @@ export class TestedeinWissenView extends LitElement {
        Ergebnis Überüfen 
      </vaadin-button>
      <vaadin-button id="nextQuestBttnId">
-       Nächste Frage 
+       N&auml;chste Frage 
      </vaadin-button>
     </vaadin-horizontal-layout>
    </vaadin-vertical-layout>

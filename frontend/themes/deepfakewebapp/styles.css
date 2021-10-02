@@ -15,3 +15,11 @@ vaadin-button{
     width: 100%;
     margin: var(--lumo-space-m);
 }
+
+vaadin-checkbox{
+    background-color:#8EB1C7;
+    margin: var(--lumo-space-s);
+}
+h1{
+    color:white;
+}

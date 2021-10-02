@@ -33,25 +33,25 @@ export class TestedeinWissenView extends LitElement {
    <vaadin-vertical-layout theme="spacing" style="width: 60%; height: 100%;">
     <h5 id="questionId" style="align-self: center; color:#B02E0C;">Questionss ??</h5>
     <vaadin-checkbox-group id="questionResId " style="color:#B02E0C; flex-grow: 0; flex-shrink: 1; height: 100%; align-self: center;" theme="vertical">
-     <vaadin-checkbox id="vaadinCheckbox" style="background-color:#8EB1C7; flex-grow: 0; flex-shrink: 1; margin: var(--lumo-space-s);" value="1">
+     <vaadin-checkbox id="vaadinCheckbox"  value="1">
        Answer 1 
      </vaadin-checkbox>
-     <vaadin-checkbox style="background-color:#8EB1C7; margin: var(--lumo-space-s);" value="2">
+     <vaadin-checkbox  value="2">
        Answer 2 
      </vaadin-checkbox>
-     <vaadin-checkbox style="background-color:#8EB1C7; margin: var(--lumo-space-s);" value="3">
+     <vaadin-checkbox  value="3">
        Answer 3 
      </vaadin-checkbox>
     </vaadin-checkbox-group>
     <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1; flex-shrink: 1; width: 100%; justify-content: space-around;">
-     <vaadin-button id="prevQuestBttnId" style="color:white; background-color:#B02E0C;">
-       Previous 
+     <vaadin-button id="prevQuestBttnId">
+       Vorherige Frage
      </vaadin-button>
-     <vaadin-button id="checkResultBttnId" style="color:white ; background-color:#B02E0C;">
-       Check Result 
+     <vaadin-button id="checkResultBttnId" >
+       Ergebnis Überüfen 
      </vaadin-button>
-     <vaadin-button style="color:white ; background-color:#B02E0C;" id="nextQuestBttnId">
-       Next 
+     <vaadin-button id="nextQuestBttnId">
+       Nächste Frage 
      </vaadin-button>
     </vaadin-horizontal-layout>
    </vaadin-vertical-layout>

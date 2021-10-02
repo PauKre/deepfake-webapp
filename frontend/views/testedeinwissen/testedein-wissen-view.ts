@@ -40,6 +40,7 @@ export class TestedeinWissenView extends LitElement {
        Answer 3 
      </vaadin-checkbox>
     </vaadin-checkbox-group>
+    <result-component id="results"></result-component>
     <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1; flex-shrink: 1; width: 100%; justify-content: space-around;">
      <vaadin-button id="prevQuestBttnId">
        Vorherige Frage

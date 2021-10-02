@@ -30,6 +30,14 @@ public class TestedeinWissenView extends LitTemplate {
     @Id("questionResId ")
     private CheckboxGroup questionResId;
 
+	@Id("resultsheader")
+	private H2 resultsHeader;
+
+	@Id("resultsText")
+	private H5 resultsText;
+
+	private ArrayList<Checkbox> checkboxes;
+
 	//Map<String, String>, ArrayList<String>
     private ArrayList<HashMap<HashMap<String, String>, ArrayList<String>>> questionsDictionary = new ArrayList< HashMap <HashMap<String, String>, ArrayList<String>>>();
 	private int[] answers = {2,1,2,1,3,2,1,2,3};
@@ -52,15 +60,13 @@ public class TestedeinWissenView extends LitTemplate {
         // You can initialise any data required for the connected UI components here.;
 		//questionResId
 		this.getQuestion(this.nextQuest);
-		this.nextQuestBttnId.addClickListener(event -> this.getQuestion(this.nextQuest));
+
+		this.nextQuestBttnId.addClickListener(event -> handle_next_question());
 		this.prevQuestBttnId.addClickListener(event -> this.getQuestion(this.currentQuest-1));
-		this.checkResultBttnId.addClickListener(event -> this.showResult());
 
     }
 	private void showFinalResult(){
 		questionResId.setVisible(false);
-		results.setResults(correct_answers);
-		results.setVisible(true);
 	}
 	private void handle_next_question(){
 		if(this.currentQuest == 7){
@@ -130,19 +136,23 @@ public class TestedeinWissenView extends LitTemplate {
 		this.questionId.setText(String.valueOf(indx +1)+ ". " + quesResp.keySet().iterator().next()) ;
 		this.questionResId.removeAll();
 
+		checkboxes = new ArrayList<>();
+		checkboxes.add(new Checkbox());
+		checkboxes.add(new Checkbox());
+		checkboxes.add(new Checkbox());
+
 		ArrayList<String> posssibleResponses = nextQuestionsDictionary.get(quesResp);
-		for (String response : posssibleResponses) {
-			Checkbox vaadinCheckbox =new Checkbox();
-			vaadinCheckbox.setLabel(response);
-			vaadinCheckbox.getStyle().set("background-color", "#B02E0C");
-			vaadinCheckbox.getStyle().set("flex-grow", "0");
-			vaadinCheckbox.getStyle().set("flex-shrink", "1");
-			vaadinCheckbox.getStyle().set("margin", "var(--lumo-space-s)");
-			vaadinCheckbox.getStyle().set("value", response);
+		for (int i = 0; i < 3; i++){
+			checkboxes.get(i).setLabel(posssibleResponses.get(i));
+			checkboxes.get(i).getStyle().set("background-color", "#B02E0C");
+			checkboxes.get(i).getStyle().set("flex-grow", "0");
+			checkboxes.get(i).getStyle().set("flex-shrink", "1");
+			checkboxes.get(i).getStyle().set("margin", "var(--lumo-space-s)");
+			checkboxes.get(i).getStyle().set("value", posssibleResponses.get(i));
 			//PropertyDescriptor<String, String> VALUE = PropertyDescriptors.attributeWithDefault("value", response);
 			//vaadinCheckbox.set(PropertyDescriptors.attributeWithDefault("value",response),  response);
-			vaadinCheckbox.getElement().setAttribute("value", response);
-			questionResId.add(vaadinCheckbox);
+			checkboxes.get(i).getElement().setAttribute("value", posssibleResponses.get(i));
+			questionResId.add(checkboxes.get(i));
 			//questionResId.setItems(posssibleResponses);
 		}
 
@@ -196,8 +206,7 @@ public class TestedeinWissenView extends LitTemplate {
 				}
 			}
 			
-			fr.close();    //closes the stream and release the resources  
-			Collections.shuffle(this.questionsDictionary);
+			fr.close();    //closes the stream and release the resources
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

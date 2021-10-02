@@ -66,6 +66,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         //dialog.getElement().getStyle().set("justify-content", "center");
         
         TextArea t = new TextArea();
+		t.setEnabled(false);
 		t.setWidth("400px");
 		t.getStyle().set("background-color", "white");
 		t.getStyle().set("color", "#B02E0C");

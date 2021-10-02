@@ -51,3 +51,4 @@ Die Bildqualität wird bei den Aufnahmen heutzutage immer besser
 Es ist einfach Deepfakes zu erkennen
 Die Programme mit denen Deepfakes erstellt werden, werden immer besser und Rechner werden immer leistungsfähiger
 Antwort 3 ist richtig. | Dadurch das Programme mit denen Deepfakes erstellt werden, immer besser und Rechner immer leistungsfähiger werden, wird es immer schwieriger Deepfakes zu erkennen.
+Next-Question

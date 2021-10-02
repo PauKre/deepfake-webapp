@@ -26,7 +26,13 @@ import java.io.*;
 @JsModule("./views/testedeinwissen/testedein-wissen-view.ts")
 public class TestedeinWissenView extends LitTemplate {
 
-    @Id("questionId")
+    @Id("becomeExpert")
+	private H2 becomeExpert;
+
+	@Id("closer")
+	private H3 closer;
+
+	@Id("questionId")
     private H5 questionId;
     @Id("questionResId ")
     private CheckboxGroup questionResId;
@@ -49,8 +55,10 @@ public class TestedeinWissenView extends LitTemplate {
 	private Button nextQuestBttnId;
 	@Id("checkResultBttnId")
 	private Button checkResultBttnId;
-	@Id("prevQuestBttnId")
-	private Button prevQuestBttnId;
+
+
+	@Id("continueButton")
+	private Button continueButton;
 
 	/**
      * Creates a new TestedeinWissenView.
@@ -63,8 +71,12 @@ public class TestedeinWissenView extends LitTemplate {
 		this.getQuestion(this.nextQuest);
 
 		this.nextQuestBttnId.addClickListener(event -> handle_next_question());
-		this.prevQuestBttnId.addClickListener(event -> this.getQuestion(this.currentQuest-1));
 
+
+		continueButton.setVisible(false);
+		resultsText.setVisible(false);
+		resultsHeader.setVisible(false);
+		checkResultBttnId.setVisible(false);
     }
 	private void showFinalResult(){
 		if(check_for_answer(answers[currentQuest])){
@@ -79,12 +91,30 @@ public class TestedeinWissenView extends LitTemplate {
 			notification.open();
 		}
 		questionResId.setVisible(false);
+		questionId.setVisible(false);
+		checkResultBttnId.setVisible(false);
+
+
+		if(correct_answers == 9) {
+			resultsText.setText("Du hast alle Fragen richtig beantwortet! Du bist bereit den nächsten Schritt zu machen!");
+			resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
+			continueButton.addClickListener(event -> continueButton.getUI().ifPresent(ui -> ui.navigate("detect")));
+		}else{
+			String textForDisplay= "Du hast " + correct_answers + " von 9 Fragen richtig beantwortet. Versuche es noch einmal!";
+			resultsText.setText(textForDisplay);
+			resultsHeader.setText("Schade! Du hast nicht alle Fragen richtig beantwortet.");
+			continueButton.setText("Nochmal Versuchen");
+			continueButton.addClickListener(event -> nextQuestBttnId.getUI().ifPresent(ui -> ui.navigate("learn")));
+
+		}
+		closer.setVisible(false);
+		continueButton.setVisible(true);
+		becomeExpert.setVisible(false);
+		resultsText.setVisible(true);
+		resultsHeader.setVisible(true);
 	}
 	private void handle_next_question(){
-		if(this.currentQuest == 7){
-			this.nextQuestBttnId.setVisible(false);
-			this.checkResultBttnId.addClickListener(event -> this.showFinalResult());
-		}
+
 		if(check_for_answer(answers[currentQuest])){
 			correct_answers++;
 			Notification notification = new Notification(

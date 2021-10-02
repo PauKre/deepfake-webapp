@@ -30,7 +30,7 @@ static get styles() {
   <vaadin-horizontal-layout theme="spacing" style="width: 100%;">
    <vaadin-vertical-layout theme="spacing" style="width: 25%;"></vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" style="width: 50%; align-self: flex-start;">
-    <vaadin-button theme="icon" aria-label="Start" id="startButtonId" style="color:white ;background-color:#B02E0C; align-self: center; width: 100%; margin: var(--lumo-space-m);" onclick="location.href='learn'">
+    <vaadin-button theme="icon" aria-label="Start" id="StartId" ">
       Start 
      <iron-icon icon="lumo:arrow-right"></iron-icon>
     </vaadin-button>

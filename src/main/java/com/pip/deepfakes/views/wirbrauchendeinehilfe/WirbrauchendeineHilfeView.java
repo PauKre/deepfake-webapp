@@ -1,5 +1,7 @@
 package com.pip.deepfakes.views.wirbrauchendeinehilfe;
 
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
@@ -21,8 +23,15 @@ import com.vaadin.flow.component.button.Button;
 @JsModule("./views/wirbrauchendeinehilfe/wirbrauchendeine-hilfe-view.ts")
 public class WirbrauchendeineHilfeView extends LitTemplate {
 
+    @Id("StartId")
+    private Button startButton;
+
     // This is the Java companion file of a design
     // You can find the design file inside /frontend/views/
 	public WirbrauchendeineHilfeView() {
+        startButton.addClickListener(event -> startButton.getUI().ifPresent(ui -> ui.navigate("learn")));
+
+
+
 }
 }

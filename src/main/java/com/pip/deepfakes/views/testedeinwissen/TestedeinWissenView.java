@@ -3,8 +3,10 @@ package com.pip.deepfakes.views.testedeinwissen;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.littemplate.LitTemplate;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
@@ -30,9 +32,10 @@ public class TestedeinWissenView extends LitTemplate {
 
 	//Map<String, String>, ArrayList<String>
     private ArrayList<HashMap<HashMap<String, String>, ArrayList<String>>> questionsDictionary = new ArrayList< HashMap <HashMap<String, String>, ArrayList<String>>>();
+	private int[] answers = {2,1,2,1,3,2,1,2,3};
 	private int nextQuest = 0;
 	private int currentQuest = 0;
-	
+	private int correct_answers = 0;
 	@Id("nextQuestBttnId")
 	private Button nextQuestBttnId;
 	@Id("checkResultBttnId")
@@ -54,6 +57,40 @@ public class TestedeinWissenView extends LitTemplate {
 		this.checkResultBttnId.addClickListener(event -> this.showResult());
 
     }
+	private void showFinalResult(){
+		questionResId.setVisible(false);
+		results.setResults(correct_answers);
+		results.setVisible(true);
+	}
+	private void handle_next_question(){
+		if(this.currentQuest == 7){
+			this.nextQuestBttnId.setVisible(false);
+			this.checkResultBttnId.addClickListener(event -> this.showFinalResult());
+		}
+		if(check_for_answer(answers[currentQuest])){
+			correct_answers++;
+			Notification notification = new Notification(
+					"Super! Das war die richtige Antwort!", 3000);
+			notification.open();
+		}
+		else{
+			Notification notification = new Notification(
+					"Schade, das war leider die falsche Antwort", 3000);
+			notification.open();
+		}
+		this.showResult();
+		this.getQuestion(this.nextQuest);
+
+	}
+	private boolean check_for_answer(int answer){
+		answer--;
+		for (int i = 0; i < 3; i++) {
+			if (i == answer && !checkboxes.get(i).getValue() || (i != answer && checkboxes.get(i).getValue())){
+				return false;
+			}
+		}
+		return true;
+	}
 	private void showResult(){
 		HashMap<HashMap<String, String>, ArrayList<String>> currentQuestionsDictionary = this.questionsDictionary.get(this.currentQuest);
 		HashMap<String, String> questi_response = currentQuestionsDictionary.keySet().iterator().next();
@@ -63,6 +100,7 @@ public class TestedeinWissenView extends LitTemplate {
 		String[] respomse_list = respomse.split("\\|");
 		
 		TextArea t = new TextArea();
+		t.setEnabled(false);
 		t.setWidth("400px");
 		t.getStyle().set("background-color", "white");
 		t.getStyle().set("color", "#B02E0C");

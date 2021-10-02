@@ -27,9 +27,6 @@ export class TestedeinWissenView extends LitElement {
   <h2 style="color:#B02E0C; align-self: center; height: 3%;">Werde zum Deepfake Experten!</h2>
   <h3>Du bist schon einen Schritt n&auml;her, um dem Waschb&auml;r zu entlarven.<br style="height: 1%;">Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.</h3>
   <vaadin-horizontal-layout style="align-items: flex-start; width: 100%; height: 60%; align-self: flex-start;">
-   <vaadin-vertical-layout style="width: 40%; align-self: flex-start; align-items: flex-start; justify-content: flex-start; height: 100%;">
-    <img id="squirrelImgId" style="width: 100%; height: 100%;" src="images/testedeinwissen/squirrel.png">
-   </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" style="width: 60%; height: 100%;">
     <h5 id="questionId" style="align-self: center; color:#B02E0C;">Questionss ??</h5>
     <vaadin-checkbox-group id="questionResId " style="color:white; flex-grow: 0; flex-shrink: 1; height: 100%; align-self: center;" theme="vertical">

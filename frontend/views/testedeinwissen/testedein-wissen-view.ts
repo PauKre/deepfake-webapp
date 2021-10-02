@@ -32,7 +32,7 @@ export class TestedeinWissenView extends LitElement {
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" style="width: 60%; height: 100%;">
     <h5 id="questionId" style="align-self: center; color:#B02E0C;">Questionss ??</h5>
-    <vaadin-checkbox-group id="questionResId " style="color:#B02E0C; flex-grow: 0; flex-shrink: 1; height: 100%; align-self: center;" theme="vertical">
+    <vaadin-checkbox-group id="questionResId " style="color:white; flex-grow: 0; flex-shrink: 1; height: 100%; align-self: center;" theme="vertical">
      <vaadin-checkbox id="vaadinCheckbox"  value="1">
        Answer 1 
      </vaadin-checkbox>

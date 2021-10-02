@@ -4,6 +4,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.notification.Notification;
@@ -66,6 +67,17 @@ public class TestedeinWissenView extends LitTemplate {
 
     }
 	private void showFinalResult(){
+		if(check_for_answer(answers[currentQuest])){
+			correct_answers++;
+			Notification notification = new Notification(
+					"Super! Das war die richtige Antwort!", 3000);
+			notification.open();
+		}
+		else{
+			Notification notification = new Notification(
+					"Schade, das war leider die falsche Antwort", 3000);
+			notification.open();
+		}
 		questionResId.setVisible(false);
 	}
 	private void handle_next_question(){
@@ -84,7 +96,13 @@ public class TestedeinWissenView extends LitTemplate {
 					"Schade, das war leider die falsche Antwort", 3000);
 			notification.open();
 		}
-		this.showResult();
+		if(this.currentQuest == 7){
+			this.nextQuestBttnId.setVisible(false);
+			this.checkResultBttnId.setVisible(true);
+			this.checkResultBttnId.addClickListener(event -> this.showFinalResult());
+		}else {
+			this.showResult();
+		}
 		this.getQuestion(this.nextQuest);
 
 	}

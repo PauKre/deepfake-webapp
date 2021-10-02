@@ -1,0 +1,36 @@
+Justin_Bieber_real.jpg
+Das Bild ist kein Deepfake. Es ist echt!
+Next-Question
+Trymacs_real.png
+Das Bild ist kein Deepfake. Es ist echt!
+Next-Question
+adele_deepfake.jpeg
+Dieses Bild ist fake! Man erkennt, dass es sich hier um ein Deepfake handelt, da einige Stellen im Gesicht unscharf sind.
+Next-Question
+anna_catify_real.png
+Dieses Bild ist kein Deepfake. Es wurde allerdings höchstwahrscheinlich mit einem Filter aufgenommen oder im Nachhinein bearbeitet.
+Next-Question
+jackie_chan_real.jpg
+Diese Bild ist echt. 
+Next-Question
+luke_skywalker_deepfake.JPG
+Dieses Bild ist ein Deepfake. Man erkennt es an den komisch geformten Ohren und dem Hintergrund.
+Next-Question
+lynda_carter_deepfake.JPG
+Dieses Bild ist ein Deepfake. Man kann es an der sehr reinen Haut und den unscharfen Mundwinkeln erkennen.
+Next-Question
+morgan_freeman_deepfake.JPG
+Dieses Bild ist fake. Man kann es an den komisch geformten Haaren auf dem Kopf und am Bart erkennen.
+Next-Question
+pokimane_real.jpg
+Dieses Bild ist kein Deepfake. Es ist echt!
+Next-Question
+sane_real.png
+Dieses Bild ist echt.
+Next-Question
+tagesschau_deepfake1.JPG
+Dieses Bild ist ein Deepfake. Wenn man ein wenig z.B. nach „Nachrichtensprecher im Ersten“ Googelt, findet man schnell ein Bild von Linda Zervakis. Hat man das Bild gefunden, erkennt man, dass auf diesem Bild ein ganz anderes Gesicht zu sehen ist.
+Next-Question
+tom_cruise_deepfake.jpg
+Dieses Bild ist fake. Man erkennt es an den unscharfen Lippen.
+Next-Question

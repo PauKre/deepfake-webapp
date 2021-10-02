@@ -7,3 +7,11 @@
 @import url('./views/dankeschoen-view.css');
 @import url('lumo-css-framework/all-classes.css');
 @import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
+
+vaadin-button{
+    color:white ;
+    background-color:#04B486;
+    align-self: center;
+    width: 100%;
+    margin: var(--lumo-space-m);
+}

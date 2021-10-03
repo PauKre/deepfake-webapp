@@ -21,8 +21,7 @@ export class DankeschoenView extends LitElement {
   <h2>Danke!</h2>
   <h3>Du hast den Waschb&auml;r überführt und das Filmstudio gerettet!<br style="height: 1%;"> Du bist jetzt ein Deepfake Experte!</h3>
   <vaadin-horizontal-layout theme="spacing" style="width: 100%; align-items: flex-start; align-self: flex-start; flex-shrink: 1; flex-grow: 0; height: 60%;">
-   <img id="catImgId" style="width: 50%; align-self: flex-start; height: 100%;" src="images/testedeinwissen/squirrel.png">
-   <img id="porkImgId" style="width: 50%; align-self: flex-start; height: 100%;" src="images/wirbrauchendeinehilfe/pork.png">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/gJefCI8jdZs?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </vaadin-horizontal-layout>
  </vaadin-vertical-layout>
  <vaadin-vertical-layout theme="spacing" style="width: 15%;"></vaadin-vertical-layout>

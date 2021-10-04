@@ -3,8 +3,11 @@ package com.pip.deepfakes.views.testedeinwissen;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.littemplate.LitTemplate;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
@@ -23,22 +26,39 @@ import java.io.*;
 @JsModule("./views/testedeinwissen/testedein-wissen-view.ts")
 public class TestedeinWissenView extends LitTemplate {
 
-    @Id("questionId")
+    @Id("becomeExpert")
+	private H2 becomeExpert;
+
+	@Id("closer")
+	private H3 closer;
+
+	@Id("questionId")
     private H5 questionId;
     @Id("questionResId ")
     private CheckboxGroup questionResId;
 
+	@Id("resultsheader")
+	private H2 resultsHeader;
+
+	@Id("resultsText")
+	private H5 resultsText;
+
+	private ArrayList<Checkbox> checkboxes;
+
 	//Map<String, String>, ArrayList<String>
     private ArrayList<HashMap<HashMap<String, String>, ArrayList<String>>> questionsDictionary = new ArrayList< HashMap <HashMap<String, String>, ArrayList<String>>>();
+	private int[] answers = {2,1,2,1,3,2,1,2,3};
 	private int nextQuest = 0;
 	private int currentQuest = 0;
-	
+	private int correct_answers = 0;
 	@Id("nextQuestBttnId")
 	private Button nextQuestBttnId;
 	@Id("checkResultBttnId")
 	private Button checkResultBttnId;
-	@Id("prevQuestBttnId")
-	private Button prevQuestBttnId;
+
+
+	@Id("continueButton")
+	private Button continueButton;
 
 	/**
      * Creates a new TestedeinWissenView.
@@ -49,11 +69,82 @@ public class TestedeinWissenView extends LitTemplate {
         // You can initialise any data required for the connected UI components here.;
 		//questionResId
 		this.getQuestion(this.nextQuest);
-		this.nextQuestBttnId.addClickListener(event -> this.getQuestion(this.nextQuest));
-		this.prevQuestBttnId.addClickListener(event -> this.getQuestion(this.currentQuest-1));
-		this.checkResultBttnId.addClickListener(event -> this.showResult());
 
+		this.nextQuestBttnId.addClickListener(event -> handle_next_question());
+
+
+		continueButton.setVisible(false);
+		resultsText.setVisible(false);
+		resultsHeader.setVisible(false);
+		checkResultBttnId.setVisible(false);
     }
+	private void showFinalResult(){
+		if(check_for_answer(answers[currentQuest])){
+			correct_answers++;
+			Notification notification = new Notification(
+					"Super! Das war die richtige Antwort!", 3000);
+			notification.open();
+		}
+		else{
+			Notification notification = new Notification(
+					"Schade, das war leider die falsche Antwort", 3000);
+			notification.open();
+		}
+		questionResId.setVisible(false);
+		questionId.setVisible(false);
+		checkResultBttnId.setVisible(false);
+
+
+		if(correct_answers == 9) {
+			resultsText.setText("Du hast alle Fragen richtig beantwortet! Du bist bereit den nächsten Schritt zu machen!");
+			resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
+			continueButton.addClickListener(event -> continueButton.getUI().ifPresent(ui -> ui.navigate("detect")));
+		}else{
+			String textForDisplay= "Du hast " + correct_answers + " von 9 Fragen richtig beantwortet. Versuche es noch einmal!";
+			resultsText.setText(textForDisplay);
+			resultsHeader.setText("Schade! Du hast nicht alle Fragen richtig beantwortet.");
+			continueButton.setText("Nochmal Versuchen");
+			continueButton.addClickListener(event -> nextQuestBttnId.getUI().ifPresent(ui -> ui.navigate("learn")));
+
+		}
+		closer.setVisible(false);
+		continueButton.setVisible(true);
+		becomeExpert.setVisible(false);
+		resultsText.setVisible(true);
+		resultsHeader.setVisible(true);
+	}
+	private void handle_next_question(){
+
+		if(check_for_answer(answers[currentQuest])){
+			correct_answers++;
+			Notification notification = new Notification(
+					"Super! Das war die richtige Antwort!", 3000);
+			notification.open();
+		}
+		else{
+			Notification notification = new Notification(
+					"Schade, das war leider die falsche Antwort", 3000);
+			notification.open();
+		}
+		if(this.currentQuest == 7){
+			this.nextQuestBttnId.setVisible(false);
+			this.checkResultBttnId.setVisible(true);
+			this.checkResultBttnId.addClickListener(event -> this.showFinalResult());
+		}else {
+			this.showResult();
+		}
+		this.getQuestion(this.nextQuest);
+
+	}
+	private boolean check_for_answer(int answer){
+		answer--;
+		for (int i = 0; i < 3; i++) {
+			if (i == answer && !checkboxes.get(i).getValue() || (i != answer && checkboxes.get(i).getValue())){
+				return false;
+			}
+		}
+		return true;
+	}
 	private void showResult(){
 		HashMap<HashMap<String, String>, ArrayList<String>> currentQuestionsDictionary = this.questionsDictionary.get(this.currentQuest);
 		HashMap<String, String> questi_response = currentQuestionsDictionary.keySet().iterator().next();
@@ -63,6 +154,7 @@ public class TestedeinWissenView extends LitTemplate {
 		String[] respomse_list = respomse.split("\\|");
 		
 		TextArea t = new TextArea();
+		t.setEnabled(false);
 		t.setWidth("400px");
 		t.getStyle().set("background-color", "white");
 		t.getStyle().set("color", "#B02E0C");
@@ -92,19 +184,23 @@ public class TestedeinWissenView extends LitTemplate {
 		this.questionId.setText(String.valueOf(indx +1)+ ". " + quesResp.keySet().iterator().next()) ;
 		this.questionResId.removeAll();
 
+		checkboxes = new ArrayList<>();
+		checkboxes.add(new Checkbox());
+		checkboxes.add(new Checkbox());
+		checkboxes.add(new Checkbox());
+
 		ArrayList<String> posssibleResponses = nextQuestionsDictionary.get(quesResp);
-		for (String response : posssibleResponses) {
-			Checkbox vaadinCheckbox =new Checkbox();
-			vaadinCheckbox.setLabel(response);
-			vaadinCheckbox.getStyle().set("background-color", "#B02E0C");
-			vaadinCheckbox.getStyle().set("flex-grow", "0");
-			vaadinCheckbox.getStyle().set("flex-shrink", "1");
-			vaadinCheckbox.getStyle().set("margin", "var(--lumo-space-s)");
-			vaadinCheckbox.getStyle().set("value", response);
+		for (int i = 0; i < 3; i++){
+			checkboxes.get(i).setLabel(posssibleResponses.get(i));
+			checkboxes.get(i).getStyle().set("background-color", "#B02E0C");
+			checkboxes.get(i).getStyle().set("flex-grow", "0");
+			checkboxes.get(i).getStyle().set("flex-shrink", "1");
+			checkboxes.get(i).getStyle().set("margin", "var(--lumo-space-s)");
+			checkboxes.get(i).getStyle().set("value", posssibleResponses.get(i));
 			//PropertyDescriptor<String, String> VALUE = PropertyDescriptors.attributeWithDefault("value", response);
 			//vaadinCheckbox.set(PropertyDescriptors.attributeWithDefault("value",response),  response);
-			vaadinCheckbox.getElement().setAttribute("value", response);
-			questionResId.add(vaadinCheckbox);
+			checkboxes.get(i).getElement().setAttribute("value", posssibleResponses.get(i));
+			questionResId.add(checkboxes.get(i));
 			//questionResId.setItems(posssibleResponses);
 		}
 
@@ -158,8 +254,7 @@ public class TestedeinWissenView extends LitTemplate {
 				}
 			}
 			
-			fr.close();    //closes the stream and release the resources  
-			Collections.shuffle(this.questionsDictionary);
+			fr.close();    //closes the stream and release the resources
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

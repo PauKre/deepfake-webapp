@@ -17,20 +17,19 @@ static get styles() {
   
   render() {
   return html`
-<vaadin-horizontal-layout class="content" style="width: 100%; justify-content: center; align-items: flex-start; background-color:white;">
+<vaadin-horizontal-layout class="content" style="width: 100%; justify-content: center; align-items: flex-start;">
  <vaadin-vertical-layout theme="spacing" style="width: 25%;"></vaadin-vertical-layout>
  <vaadin-vertical-layout theme="spacing" style="width: 50%; margin: var(--lumo-space-m); align-self: flex-start; justify-content: flex-start; align-items: center;">
   <div style="align-self: center;">
-   <h2 style="color:#B02E0C; align-self: center; flex-grow: 0; flex-shrink: 1; padding: var(--lumo-space-m );">Werde zum Deepfake Experten!</h2>
+   <h2>Werde zum Deepfake Experten!</h2>
   </div>
   <vaadin-horizontal-layout theme="spacing" style="width: 100%; align-items: flex-start; justify-content: center; align-self: center; flex-shrink: 1; flex-grow: 0;">
-   <img id="catImgId" style="width: 50%; align-self: flex-start;" src="images/wirbrauchendeinehilfe/cat.png">
-   <img id="porkImgId" style="width: 50%; align-self: flex-start;" src="images/wirbrauchendeinehilfe/pork.png">
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/nt308HZ4cuo?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </vaadin-horizontal-layout>
   <vaadin-horizontal-layout theme="spacing" style="width: 100%;">
    <vaadin-vertical-layout theme="spacing" style="width: 25%;"></vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" style="width: 50%; align-self: flex-start;">
-    <vaadin-button theme="icon" aria-label="Start" id="startButtonId" style="color:white ;background-color:#B02E0C; align-self: center; width: 100%; margin: var(--lumo-space-m);" onclick="location.href='learn'">
+    <vaadin-button theme="icon" id="StartId">
       Start 
      <iron-icon icon="lumo:arrow-right"></iron-icon>
     </vaadin-button>

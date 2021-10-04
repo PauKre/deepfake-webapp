@@ -7,3 +7,44 @@
 @import url('./views/dankeschoen-view.css');
 @import url('lumo-css-framework/all-classes.css');
 @import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
+
+vaadin-button{
+    color:white ;
+    background-color:#04B486;
+    align-self: center;
+    width: 100%;
+    margin: var(--lumo-space-m);
+}
+
+vaadin-checkbox{
+    background-color:#8EB1C7;
+    margin: var(--lumo-space-s);
+}
+h1{
+    color:white;
+}
+h2{
+    color:#24b45c;
+    align-self: center;
+}
+h5{
+    color:#24b45c;
+    align-self: center;
+}
+h3{
+    color:#8292a8;
+    align-self: center;
+}
+vaadin-horizontal-layout{
+    align-self: center;
+    background-color:#24344c;
+
+}
+
+vaadin-checkbox{
+    color:#8292a8;
+    background-color:#04B486;
+}
+vaadin-vertical-layout{
+    background-color:#24344c;
+}

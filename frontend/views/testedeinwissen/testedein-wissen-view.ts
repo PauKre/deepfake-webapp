@@ -21,37 +21,36 @@ export class TestedeinWissenView extends LitElement {
 
   render() {
     return html`
-<vaadin-horizontal-layout class="content" style="width: 100%; align-items: flex-start; justify-content: center; background-color:white; height: 100%;">
+<vaadin-horizontal-layout class="content" style="width: 100%; align-items: flex-start; justify-content: center; height: 100%;">
  <vaadin-vertical-layout theme="spacing" style="align-self: flex-start; align-items: center; justify-content: flex-start; width: 15%;"></vaadin-vertical-layout>
  <vaadin-vertical-layout style="align-self: stretch; align-items: center; justify-content: flex-start; width: 70%; height: 97%; padding: var(--lumo-space-m);">
-  <h2 style="color:#B02E0C; align-self: center; height: 3%;">Werde zum Deepfake Experten!</h2>
-  <h3 style="color:#B02E0C; align-self: center; flex-grow: 0; height: 9%;">Du bist schon einen Schritt näher, um dem Waschbär zu entlarven.<br style="height: 1%;">Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.</h3>
-  <vaadin-horizontal-layout style="align-items: flex-start; width: 100%; height: 60%; align-self: flex-start;">
-   <vaadin-vertical-layout style="width: 40%; align-self: flex-start; align-items: flex-start; justify-content: flex-start; height: 100%;">
-    <img id="squirrelImgId" style="width: 100%; height: 100%;" src="images/testedeinwissen/squirrel.png">
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" style="width: 60%; height: 100%;">
-    <h5 id="questionId" style="align-self: center; color:#B02E0C;">Questionss ??</h5>
+  <h2 id="becomeExpert">Werde zum Deepfake Experten!</h2>
+  <h3 id="closer">Du bist schon einen Schritt n&auml;her, um dem Waschb&auml;r zu entlarven.<br style="height: 1%;">Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.</h3>
+  <vaadin-horizontal-layout style="align-items: center; width: 100%; height: 60%; align-self: flex-start;">
+   <vaadin-vertical-layout theme="spacing" style="width: 100%; height: 100%; align-items: center;">
+    <h5 id="questionId">Questionss ??</h5>
     <vaadin-checkbox-group id="questionResId " style="color:white; flex-grow: 0; flex-shrink: 1; height: 100%; align-self: center;" theme="vertical">
-     <vaadin-checkbox id="vaadinCheckbox" style="background-color:#8EB1C7; flex-grow: 0; flex-shrink: 1; margin: var(--lumo-space-s);" value="1">
+     <vaadin-checkbox id="vaadinCheckbox"  value="1">
        Answer 1 
      </vaadin-checkbox>
-     <vaadin-checkbox style="background-color:#8EB1C7; margin: var(--lumo-space-s);" value="2">
+     <vaadin-checkbox  value="2">
        Answer 2 
      </vaadin-checkbox>
-     <vaadin-checkbox style="background-color:#8EB1C7; margin: var(--lumo-space-s);" value="3">
+     <vaadin-checkbox  value="3">
        Answer 3 
      </vaadin-checkbox>
     </vaadin-checkbox-group>
-    <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1; flex-shrink: 1; width: 100%; justify-content: space-around;">
-     <vaadin-button id="prevQuestBttnId" style="color:white; background-color:#B02E0C;">
-       Previous 
+    <h2 id="resultsheader">Ein Header</h2>
+    <h5 id="resultsText">Ein Text</h5>
+    <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1; flex-shrink: 1; width: 80%; justify-content: space-around;">
+     <vaadin-button id="checkResultBttnId" >
+       Ergebnis &Uuml;berpr&uuml;fen
      </vaadin-button>
-     <vaadin-button id="checkResultBttnId" style="color:white ; background-color:#B02E0C;">
-       Check Result 
+     <vaadin-button id="nextQuestBttnId">
+       N&auml;chste Frage 
      </vaadin-button>
-     <vaadin-button style="color:white ; background-color:#B02E0C;" id="nextQuestBttnId">
-       Next 
+     <vaadin-button id="continueButton">
+            Weiter
      </vaadin-button>
     </vaadin-horizontal-layout>
    </vaadin-vertical-layout>

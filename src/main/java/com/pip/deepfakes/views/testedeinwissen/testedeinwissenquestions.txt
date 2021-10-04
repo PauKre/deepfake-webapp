@@ -31,9 +31,8 @@ Next-Question
 Was sind Merkmale an denen man erkennen kann, ob ein Foto oder Video gefälscht wurde ?
 Die Hintergrundfarbe ist immer grün
 Ohren oder Haare sind seltsam geformt
-Einige Regionen (z.B. die Mundwinkel) sind unscharf
 Die Person wackelt immer mit den Ohren
-Antwort 2 und 3 drei sind richtig. | Meist sind bei Deepfakes die Ohren oder Haare seltsam geformt oder einige Regionen wie die Mundwinkel sind unscharf.
+Antwort 2 ist richtig. | Meist sind bei Deepfakes die Ohren oder Haare seltsam geformt oder einige Regionen wie die Mundwinkel sind unscharf.
 Next-Question
 Wo werden Deepfakes kommerziell eingesetzt ?
 In der Kunst- und Filmbranche
@@ -52,3 +51,4 @@ Die Bildqualität wird bei den Aufnahmen heutzutage immer besser
 Es ist einfach Deepfakes zu erkennen
 Die Programme mit denen Deepfakes erstellt werden, werden immer besser und Rechner werden immer leistungsfähiger
 Antwort 3 ist richtig. | Dadurch das Programme mit denen Deepfakes erstellt werden, immer besser und Rechner immer leistungsfähiger werden, wird es immer schwieriger Deepfakes zu erkennen.
+Next-Question

@@ -21,6 +21,9 @@ public class LerneetwasueberDeepfakesView extends LitTemplate {
     // You can find the design file inside /frontend/views/
 
     public LerneetwasueberDeepfakesView() {
-        continueButton.addClickListener(event -> continueButton.getUI().ifPresent(ui -> ui.navigate("quiz")));
+        continueButton.addClickListener(event -> {
+            continueButton.getUI().ifPresent(ui -> ui.navigate("quiz"));
+            MainLayout.makeProgress();
+        });
     }
 }

@@ -53,7 +53,16 @@ public class MainLayout extends AppLayout {
     public static Boolean[] clickedTabs = new Boolean[6];
 
     // listener for page switches
-    public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
+    //public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
+
+    public static void makeProgress(){
+        double value = learnprogress.getValue() + 1;
+        // && !clickedTabs[tabs.getSelectedIndex()]
+        // clickedTabs[tabs.getSelectedIndex()] = true;
+        if (value <= learnprogress.getMax()){
+            learnprogress.setValue(value);
+        }
+    }
 
     public static class MenuItemInfo {
 
@@ -122,8 +131,8 @@ public class MainLayout extends AppLayout {
     private Tabs createMenuTabs() {
         learnprogress.addThemeVariants(ProgressBarVariant.LUMO_SUCCESS);
         Arrays.fill(clickedTabs, Boolean.FALSE);
-        createListener();
-        tabs.addSelectedChangeListener(listener);
+        // createListener();
+        // tabs.addSelectedChangeListener(listener);
         tabs.getStyle().set("max-width", "100%");
         for (Tab menuTab : createMenuItems()) {
 //            menuTab.setEnabled(false);
@@ -137,7 +146,7 @@ public class MainLayout extends AppLayout {
      * make progress on page switch, but only if it hasn't been clicked yet
      * TODO: extend the listener to correct page change behavior and build in barriers to impose the order of the learning platform
      */
-    private void createListener(){
+    /*private void createListener(){
         listener = selectedChangeEvent -> {
             double value = learnprogress.getValue() + 1;
             if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]) {
@@ -145,7 +154,7 @@ public class MainLayout extends AppLayout {
                 learnprogress.setValue(value);
             }
         };
-    }
+    }*/
 
     private List<Tab> createMenuItems() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //

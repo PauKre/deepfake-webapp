@@ -6,6 +6,7 @@ import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H5;
+import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.template.Id;
@@ -98,7 +99,10 @@ public class TestedeinWissenView extends LitTemplate {
 		if(correct_answers == 9) {
 			resultsText.setText("Du hast alle Fragen richtig beantwortet! Du bist bereit den nächsten Schritt zu machen!");
 			resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
-			continueButton.addClickListener(event -> continueButton.getUI().ifPresent(ui -> ui.navigate("detect")));
+			continueButton.addClickListener(event -> {
+				continueButton.getUI().ifPresent(ui -> ui.navigate("detect"));
+				MainLayout.makeProgress();
+			});
 		}else{
 			String textForDisplay= "Du hast " + correct_answers + " von 9 Fragen richtig beantwortet. Versuche es noch einmal!";
 			resultsText.setText(textForDisplay);

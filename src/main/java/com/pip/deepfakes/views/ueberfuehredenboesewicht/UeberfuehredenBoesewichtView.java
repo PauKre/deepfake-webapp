@@ -17,5 +17,6 @@ public class UeberfuehredenBoesewichtView extends LitTemplate {
     // You can find the design file inside /frontend/views/
 
     public UeberfuehredenBoesewichtView() {
+
     }
 }

@@ -44,23 +44,23 @@ import com.vaadin.flow.component.avatar.Avatar;
 public class MainLayout extends AppLayout {
 
     // progress bar on top
-    public static ProgressBar learnprogress = new ProgressBar(1.0, 6.0, 1.0);
+    public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 1.0);
 
     public static final Tabs tabs = new Tabs();
 
     // keep track of pages visited (correct progress bar behaviour)
     public static Boolean[] clickedTabs = new Boolean[6];
 
+    public static ArrayList<Tab> tabs_instances = new ArrayList<>();
+
     // listener for page switches
-    //public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
+    public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
 
     public static void makeProgress(int i){
         tabs_instances.get(i).setEnabled(true);
         tabs.setSelectedTab(tabs_instances.get(i));
         System.out.println(tabs_instances.get(i));
         double value = learnprogress.getValue() + 1;
-        // && !clickedTabs[tabs.getSelectedIndex()]
-        // clickedTabs[tabs.getSelectedIndex()] = true;
         if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]){
             clickedTabs[tabs.getSelectedIndex()] = true;
             learnprogress.setValue(value);
@@ -134,12 +134,12 @@ public class MainLayout extends AppLayout {
     private Tabs createMenuTabs() {
         learnprogress.addThemeVariants(ProgressBarVariant.LUMO_SUCCESS);
         Arrays.fill(clickedTabs, Boolean.FALSE);
-        // createListener();
-        // tabs.addSelectedChangeListener(listener);
+
         tabs.getStyle().set("max-width", "100%");
         for (Tab menuTab : createMenuItems()) {
-            menuTab.setEnabled(false);
             tabs.add(menuTab);
+            menuTab.setEnabled(false);
+            tabs_instances.add(menuTab);
         }
         return tabs;
     }
@@ -149,15 +149,11 @@ public class MainLayout extends AppLayout {
      * make progress on page switch, but only if it hasn't been clicked yet
      * TODO: extend the listener to correct page change behavior and build in barriers to impose the order of the learning platform
      */
-    /*private void createListener(){
+    private void createListener(){
         listener = selectedChangeEvent -> {
-            double value = learnprogress.getValue() + 1;
-            if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]) {
-                clickedTabs[tabs.getSelectedIndex()] = true;
-                learnprogress.setValue(value);
-            }
-        };
-    }*/
+                System.out.println("Pferd"); //Was??
+            };
+    }
 
     private List<Tab> createMenuItems() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //

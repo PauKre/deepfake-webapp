@@ -105,6 +105,7 @@ public class TestedeinWissenView extends LitTemplate {
 			resultsText.setText("Du hast alle Fragen richtig beantwortet! Du bist bereit den nächsten Schritt zu machen!");
 			resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
 			continueButton.addClickListener(event -> {
+				MainLayout.tabs.setSelectedTab(MainLayout.tabs_instances.get(2));
 				continueButton.getUI().ifPresent(ui -> ui.navigate("detect"));
 				MainLayout.makeProgress(3);
 			});

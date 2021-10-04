@@ -27,10 +27,8 @@ public class ErkennedieDeepfakesView extends LitTemplate {
     private int currentImg = 0;
     @Id("imageId")
     private Image imageId;
-    @Id("nextImgBttnId")
-    private Button nextImgBttnId;
-    @Id("prevImgBttnId")
-    private Button prevImgBttnId;
+
+
     @Id("fakeBttnId")
     private Button fakeBttnId;
     @Id("echtBttnId")
@@ -43,23 +41,23 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         this.getImages();
         
         this.getImg(this.nextImg);
-        this.nextImgBttnId.addClickListener(event -> this.getImg(this.nextImg));
-        this.prevImgBttnId.addClickListener(event -> this.getImg(this.currentImg-1));
-        this.fakeBttnId.addClickListener(event -> this.showResult(true));
-        this.echtBttnId.addClickListener(event -> this.showResult(false));
+		this.fakeBttnId.addClickListener(event -> handleGuess(true));
+		this.echtBttnId.addClickListener(event -> handleGuess(false));
     }
 
-    private void showResult(Boolean choice){
+	private void handleGuess(boolean guess) {
+		showResult(guess);
+		getImg(this.nextImg);
+	}
+
+	private void showResult(Boolean choice){
 
         HashMap<HashMap<String, Boolean>, String> currentImgDictionary = this.imasgesDictionary.get(this.currentImg);
         HashMap<String, Boolean> imgResp = currentImgDictionary.keySet().iterator().next();
         String imgName = imgResp.keySet().iterator().next();
-        Boolean respomse = imgResp.values().iterator().next();
-        String raison = currentImgDictionary.values().iterator().next();
-        
-        //String result = "<div>" + String.valueOf(respomse.equals(choice)) + "<br>" + raison + "</div>";  
-        //Html html = new Html(result);
-        
+        Boolean response = imgResp.values().iterator().next();
+        String reason = currentImgDictionary.values().iterator().next();
+
         Dialog dialog = new Dialog();
         //dialog.add(html);
         
@@ -68,14 +66,12 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         TextArea t = new TextArea();
 		t.setEnabled(false);
 		t.setWidth("400px");
-		t.getStyle().set("background-color", "white");
-		t.getStyle().set("color", "#B02E0C");
-		if (respomse.equals(choice)) {
-			t.setValue("Richtig" + "\n" + raison);
+		if (response.equals(choice)) {
+			t.setValue("Richtig" + "\n" + reason);
 		}else {
-			t.setValue("Falsch" + "\n" + raison);
+			t.setValue("Falsch" + "\n" + reason);
 		}
-		
+
 		dialog.add(t);
         
         //dialog.getElement().getStyle().set("margin", "var(--lumo-space-s)");
@@ -84,11 +80,9 @@ public class ErkennedieDeepfakesView extends LitTemplate {
     }
 
     private void getImg(int indx){
-        if (indx >= this.imasgesDictionary.size() || indx < 0 ){
-            indx = 0;
-        }
+        indx = ++indx % imasgesDictionary.size();
 
-        this.nextImg = indx + 1;
+		this.nextImg = indx + 1;
         this.currentImg = indx;
 
         HashMap<HashMap<String, Boolean>, String> nextImgDictionary = this.imasgesDictionary.get(indx);
@@ -143,7 +137,6 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 			}
 			
 			fr.close();    //closes the stream and release the resources  
-			Collections.shuffle(this.imasgesDictionary);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

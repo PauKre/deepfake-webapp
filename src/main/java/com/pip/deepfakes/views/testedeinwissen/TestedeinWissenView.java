@@ -166,8 +166,6 @@ public class TestedeinWissenView extends LitTemplate {
 		TextArea t = new TextArea();
 		t.setEnabled(false);
 		t.setWidth("400px");
-		t.getStyle().set("background-color", "white");
-		t.getStyle().set("color", "#B02E0C");
 		t.setValue(respomse_list[0] + "\n" + respomse_list[1]);
 		dialog.add(t);
 		
@@ -202,10 +200,10 @@ public class TestedeinWissenView extends LitTemplate {
 		ArrayList<String> posssibleResponses = nextQuestionsDictionary.get(quesResp);
 		for (int i = 0; i < 3; i++){
 			checkboxes.get(i).setLabel(posssibleResponses.get(i));
-			checkboxes.get(i).getStyle().set("background-color", "#B02E0C");
-			checkboxes.get(i).getStyle().set("flex-grow", "0");
-			checkboxes.get(i).getStyle().set("flex-shrink", "1");
-			checkboxes.get(i).getStyle().set("margin", "var(--lumo-space-s)");
+//			checkboxes.get(i).getStyle().set("background-color", "#B02E0C");
+//			checkboxes.get(i).getStyle().set("flex-grow", "0");
+//			checkboxes.get(i).getStyle().set("flex-shrink", "1");
+//			checkboxes.get(i).getStyle().set("margin", "var(--lumo-space-s)");
 			checkboxes.get(i).getStyle().set("value", posssibleResponses.get(i));
 			//PropertyDescriptor<String, String> VALUE = PropertyDescriptors.attributeWithDefault("value", response);
 			//vaadinCheckbox.set(PropertyDescriptors.attributeWithDefault("value",response),  response);

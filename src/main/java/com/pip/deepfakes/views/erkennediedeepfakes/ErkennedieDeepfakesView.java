@@ -1,5 +1,6 @@
 package com.pip.deepfakes.views.erkennediedeepfakes;
 
+import com.sun.tools.javac.Main;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -76,10 +77,14 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 	private void handleClose(Dialog dialog) {
 		getImg(nextImg);
 		dialog.close();
+		if(currentImg==11){
+			echtBttnId.getUI().ifPresent(ui -> ui.navigate("solve"));
+			MainLayout.makeProgress();
+		}
 	}
 
 	private void getImg(int indx){
-        indx = ++indx % imasgesDictionary.size();
+        indx = indx % imasgesDictionary.size();
 
 		this.nextImg = indx + 1;
         this.currentImg = indx;
@@ -134,8 +139,9 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 					}
 				}
 			}
-			
-			fr.close();    //closes the stream and release the resources  
+			System.out.print("Images Dictionary Size: ");
+			System.out.println(imasgesDictionary.size());
+			fr.close();    //closes the stream and release the resources
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

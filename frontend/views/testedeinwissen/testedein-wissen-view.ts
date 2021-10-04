@@ -23,7 +23,7 @@ export class TestedeinWissenView extends LitElement {
     return html`
 <vaadin-horizontal-layout class="content" style="width: 100%; align-items: flex-start; justify-content: center; height: 100%;">
  <vaadin-vertical-layout theme="spacing" style="align-self: flex-start; align-items: center; justify-content: flex-start; width: 15%;"></vaadin-vertical-layout>
- <vaadin-vertical-layout style="align-self: stretch; align-items: center; justify-content: flex-start; width: 70%; height: 97%; padding: var(--lumo-space-m);">
+ <vaadin-vertical-layout style="align-self: stretch; align-items: center; justify-content: flex-start; width: 70%; height: 97%; padding: var(--lumo-space-s);">
   <h2 id="becomeExpert">Werde zum Deepfake Experten!</h2>
   <h3 id="closer">Du bist schon einen Schritt n&auml;her, um dem Waschb&auml;r zu entlarven.<br style="height: 1%;">Beantworte die Fragen der Meisterin Foxi, um dein Wissen zu Testen.</h3>
   <vaadin-horizontal-layout style="align-items: center; width: 100%; height: 60%; align-self: flex-start;">
@@ -43,7 +43,10 @@ export class TestedeinWissenView extends LitElement {
     <h2 id="resultsheader">Ein Header</h2>
     <h5 id="resultsText">Ein Text</h5>
     <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1; flex-shrink: 1; width: 80%; justify-content: space-around;">
-     <vaadin-button id="checkResultBttnId" >
+      <vaadin-button id="learnButton">
+        Zur&uuml;ck zum Lernbereich
+      </vaadin-button>
+      <vaadin-button id="checkResultBttnId" >
        Ergebnis &Uuml;berpr&uuml;fen
      </vaadin-button>
      <vaadin-button id="nextQuestBttnId">
@@ -52,6 +55,7 @@ export class TestedeinWissenView extends LitElement {
      <vaadin-button id="continueButton">
             Weiter
      </vaadin-button>
+      
     </vaadin-horizontal-layout>
    </vaadin-vertical-layout>
   </vaadin-horizontal-layout>

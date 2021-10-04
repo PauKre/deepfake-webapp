@@ -1,14 +1,22 @@
 .topmenu-header {
   height: var(--lumo-size-xl);
+  color: #8EB1C7;
 }
 .topmenu-header h1 {
   font-size: var(--lumo-font-size-l);
+  color: #8EB1C7;
   margin: 0;
 }
 .topmenu-header img#logo {
+  border-radius: 3px;
   height: var(--lumo-size-l);
   margin: 0 var(--lumo-space-s);
 }
 .topmenu-header vaadin-tabs {
   align-self: center;
+  color: #8EB1C7;
+}
+
+vaadin-tab{
+  color: #8EB1C7;
 }

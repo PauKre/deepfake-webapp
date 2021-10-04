@@ -1,6 +1,7 @@
 package com.pip.deepfakes.views.lerneetwasueberdeepfakes;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.polymertemplate.Id;
 import com.vaadin.flow.router.Route;
@@ -21,6 +22,10 @@ public class LerneetwasueberDeepfakesView extends LitTemplate {
     // You can find the design file inside /frontend/views/
 
     public LerneetwasueberDeepfakesView() {
-        continueButton.addClickListener(event -> continueButton.getUI().ifPresent(ui -> ui.navigate("quiz")));
+        continueButton.addClickListener(event -> {
+
+            continueButton.getUI().ifPresent(ui -> ui.navigate("quiz"));
+            MainLayout.makeProgress(2);
+        });
     }
 }

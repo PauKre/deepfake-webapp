@@ -34,6 +34,7 @@ public class TestedeinWissenView extends LitTemplate {
 
 	@Id("questionId")
     private H5 questionId;
+
     @Id("questionResId ")
     private CheckboxGroup questionResId;
 
@@ -42,6 +43,9 @@ public class TestedeinWissenView extends LitTemplate {
 
 	@Id("resultsText")
 	private H5 resultsText;
+
+	@Id("learnButton")
+	private Button learnButton;
 
 	private ArrayList<Checkbox> checkboxes;
 
@@ -65,7 +69,9 @@ public class TestedeinWissenView extends LitTemplate {
      */
     public TestedeinWissenView() {
 		this.getQuestions();
-
+		learnButton.addClickListener(event -> {
+			learnButton.getUI().ifPresent(ui -> ui.navigate("learn"));
+		});
         // You can initialise any data required for the connected UI components here.;
 		//questionResId
 		this.getQuestion(this.nextQuest);
@@ -98,7 +104,11 @@ public class TestedeinWissenView extends LitTemplate {
 		if(correct_answers == 9) {
 			resultsText.setText("Du hast alle Fragen richtig beantwortet! Du bist bereit den nächsten Schritt zu machen!");
 			resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
-			continueButton.addClickListener(event -> continueButton.getUI().ifPresent(ui -> ui.navigate("detect")));
+			continueButton.addClickListener(event -> {
+				MainLayout.tabs.setSelectedTab(MainLayout.tabs_instances.get(2));
+				continueButton.getUI().ifPresent(ui -> ui.navigate("detect"));
+				MainLayout.makeProgress(3);
+			});
 		}else{
 			String textForDisplay= "Du hast " + correct_answers + " von 9 Fragen richtig beantwortet. Versuche es noch einmal!";
 			resultsText.setText(textForDisplay);
@@ -156,8 +166,6 @@ public class TestedeinWissenView extends LitTemplate {
 		TextArea t = new TextArea();
 		t.setEnabled(false);
 		t.setWidth("400px");
-		t.getStyle().set("background-color", "white");
-		t.getStyle().set("color", "#B02E0C");
 		t.setValue(respomse_list[0] + "\n" + respomse_list[1]);
 		dialog.add(t);
 		
@@ -192,10 +200,6 @@ public class TestedeinWissenView extends LitTemplate {
 		ArrayList<String> posssibleResponses = nextQuestionsDictionary.get(quesResp);
 		for (int i = 0; i < 3; i++){
 			checkboxes.get(i).setLabel(posssibleResponses.get(i));
-			checkboxes.get(i).getStyle().set("background-color", "#B02E0C");
-			checkboxes.get(i).getStyle().set("flex-grow", "0");
-			checkboxes.get(i).getStyle().set("flex-shrink", "1");
-			checkboxes.get(i).getStyle().set("margin", "var(--lumo-space-s)");
 			checkboxes.get(i).getStyle().set("value", posssibleResponses.get(i));
 			//PropertyDescriptor<String, String> VALUE = PropertyDescriptors.attributeWithDefault("value", response);
 			//vaadinCheckbox.set(PropertyDescriptors.attributeWithDefault("value",response),  response);

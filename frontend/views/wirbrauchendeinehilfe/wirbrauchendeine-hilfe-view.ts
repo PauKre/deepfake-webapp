@@ -19,7 +19,7 @@ static get styles() {
   return html`
 <vaadin-horizontal-layout class="content" style="width: 100%; justify-content: center; align-items: flex-start;">
  <vaadin-vertical-layout theme="spacing" style="width: 25%;"></vaadin-vertical-layout>
- <vaadin-vertical-layout theme="spacing" style="width: 50%; margin: var(--lumo-space-m); align-self: flex-start; justify-content: flex-start; align-items: center;">
+ <vaadin-vertical-layout theme="spacing" style="width: 50%; margin: var(--lumo-space-s); align-self: flex-start; justify-content: flex-start; align-items: center;">
   <div style="align-self: center;">
    <h2>Werde zum Deepfake Experten!</h2>
   </div>

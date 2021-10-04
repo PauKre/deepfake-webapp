@@ -10,9 +10,7 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -22,7 +20,7 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.progressbar.ProgressBarVariant;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.component.tabs.TabsVariant;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
 import com.pip.deepfakes.views.wirbrauchendeinehilfe.WirbrauchendeineHilfeView;
@@ -39,21 +37,35 @@ import com.vaadin.flow.component.avatar.Avatar;
 /**
  * The main view is a top-level placeholder for other views.
  */
+@PreserveOnRefresh
 @PWA(name = "Deepfake Webapp", shortName = "Deepfake Webapp", enableInstallPrompt = false)
 @Theme(themeFolder = "deepfakewebapp", variant = Lumo.DARK)
 @PageTitle("Main")
 public class MainLayout extends AppLayout {
 
     // progress bar on top
-    public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 0.0);
+    public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 1.0);
 
     public static final Tabs tabs = new Tabs();
 
     // keep track of pages visited (correct progress bar behaviour)
     public static Boolean[] clickedTabs = new Boolean[6];
 
+    public static ArrayList<Tab> tabs_instances = new ArrayList<>();
+
     // listener for page switches
     public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
+
+    public static void makeProgress(int i){
+        tabs_instances.get(i).setEnabled(true);
+        tabs.setSelectedTab(tabs_instances.get(i));
+        System.out.println(tabs_instances.get(i));
+        double value = learnprogress.getValue() + 1;
+        if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]){
+            clickedTabs[tabs.getSelectedIndex()] = true;
+            learnprogress.setValue(value);
+        }
+    }
 
     public static class MenuItemInfo {
 
@@ -122,12 +134,18 @@ public class MainLayout extends AppLayout {
     private Tabs createMenuTabs() {
         learnprogress.addThemeVariants(ProgressBarVariant.LUMO_SUCCESS);
         Arrays.fill(clickedTabs, Boolean.FALSE);
-        createListener();
-        tabs.addSelectedChangeListener(listener);
+
         tabs.getStyle().set("max-width", "100%");
+        boolean isFirst = true;
         for (Tab menuTab : createMenuItems()) {
-            menuTab.setEnabled(false);
             tabs.add(menuTab);
+            if(!isFirst){
+                menuTab.setEnabled(false);
+            }else{
+                isFirst = false;
+            }
+
+            tabs_instances.add(menuTab);
         }
         return tabs;
     }
@@ -139,12 +157,8 @@ public class MainLayout extends AppLayout {
      */
     private void createListener(){
         listener = selectedChangeEvent -> {
-            double value = learnprogress.getValue() + 1;
-            if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]) {
-                clickedTabs[tabs.getSelectedIndex()] = true;
-                learnprogress.setValue(value);
-            }
-        };
+                System.out.println("Pferd"); //Was??
+            };
     }
 
     private List<Tab> createMenuItems() {

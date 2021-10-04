@@ -9,7 +9,7 @@
 @import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
 
 vaadin-button{
-    color:white ;
+    color:#233348 ;
     background-color:#04B486;
     align-self: center;
     width: 100%;
@@ -18,12 +18,14 @@ vaadin-button{
 
 vaadin-checkbox{
     background-color:#8EB1C7;
+    color: #233348;
     margin: var(--lumo-space-s);
 }
 h1{
     color:white;
 }
 h2{
+    margin-top: 10px;
     color:#24b45c;
     align-self: center;
 }
@@ -32,19 +34,24 @@ h5{
     align-self: center;
 }
 h3{
-    color:#8292a8;
+    color:#8EB1C7;
     align-self: center;
 }
 vaadin-horizontal-layout{
     align-self: center;
-    background-color:#24344c;
+    background-color:#233348;
 
 }
 
 vaadin-checkbox{
-    color:#8292a8;
-    background-color:#04B486;
+    border-radius: 3px;
+    color: #233348;
 }
 vaadin-vertical-layout{
-    background-color:#24344c;
+    padding-top: 0px;
+    background-color:#233348;
+}
+
+.click{
+    cursor: pointer;
 }

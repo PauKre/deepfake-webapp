@@ -1,7 +1,6 @@
 package com.pip.deepfakes.views.erkennediedeepfakes;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.littemplate.LitTemplate;
@@ -10,7 +9,6 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.pip.deepfakes.views.MainLayout;
-import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import java.util.*;
@@ -27,10 +25,8 @@ public class ErkennedieDeepfakesView extends LitTemplate {
     private int currentImg = 0;
     @Id("imageId")
     private Image imageId;
-    @Id("nextImgBttnId")
-    private Button nextImgBttnId;
-    @Id("prevImgBttnId")
-    private Button prevImgBttnId;
+
+
     @Id("fakeBttnId")
     private Button fakeBttnId;
     @Id("echtBttnId")
@@ -43,52 +39,51 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         this.getImages();
         
         this.getImg(this.nextImg);
-        this.nextImgBttnId.addClickListener(event -> this.getImg(this.nextImg));
-        this.prevImgBttnId.addClickListener(event -> this.getImg(this.currentImg-1));
-        this.fakeBttnId.addClickListener(event -> this.showResult(true));
-        this.echtBttnId.addClickListener(event -> this.showResult(false));
+		this.fakeBttnId.addClickListener(event -> showResult(true));
+		this.echtBttnId.addClickListener(event -> showResult(false));
     }
 
-    private void showResult(Boolean choice){
+
+
+	private void showResult(Boolean choice){
 
         HashMap<HashMap<String, Boolean>, String> currentImgDictionary = this.imasgesDictionary.get(this.currentImg);
         HashMap<String, Boolean> imgResp = currentImgDictionary.keySet().iterator().next();
         String imgName = imgResp.keySet().iterator().next();
-        Boolean respomse = imgResp.values().iterator().next();
-        String raison = currentImgDictionary.values().iterator().next();
-        
-        //String result = "<div>" + String.valueOf(respomse.equals(choice)) + "<br>" + raison + "</div>";  
-        //Html html = new Html(result);
-        
+        Boolean response = imgResp.values().iterator().next();
+        String reason = currentImgDictionary.values().iterator().next();
+
         Dialog dialog = new Dialog();
-        //dialog.add(html);
-        
-        //dialog.getElement().getStyle().set("justify-content", "center");
         
         TextArea t = new TextArea();
 		t.setEnabled(false);
 		t.setWidth("400px");
-		t.getStyle().set("background-color", "white");
-		t.getStyle().set("color", "#B02E0C");
-		if (respomse.equals(choice)) {
-			t.setValue("Richtig" + "\n" + raison);
+		if (response.equals(choice)) {
+			t.setValue("Richtig" + "\n" + reason);
 		}else {
-			t.setValue("Falsch" + "\n" + raison);
+			t.setValue("Falsch" + "\n" + reason);
 		}
-		
+
 		dialog.add(t);
         
-        //dialog.getElement().getStyle().set("margin", "var(--lumo-space-s)");
-        
         dialog.open();
+
+		dialog.addDialogCloseActionListener(dialogCloseActionEvent -> handleClose(dialog));
     }
 
-    private void getImg(int indx){
-        if (indx >= this.imasgesDictionary.size() || indx < 0 ){
-            indx = 0;
-        }
+	private void handleClose(Dialog dialog) {
+		getImg(nextImg);
+		dialog.close();
+		if(currentImg==11){
+			echtBttnId.getUI().ifPresent(ui -> ui.navigate("solve"));
+			MainLayout.makeProgress(4);
+		}
+	}
 
-        this.nextImg = indx + 1;
+	private void getImg(int indx){
+        indx = indx % imasgesDictionary.size();
+
+		this.nextImg = indx + 1;
         this.currentImg = indx;
 
         HashMap<HashMap<String, Boolean>, String> nextImgDictionary = this.imasgesDictionary.get(indx);
@@ -97,7 +92,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         this.imageId.getElement().setAttribute("src", imgName);
     }
 
-    // generate a dictionary of possibles images: true: the image is facke , false: the image is echt
+    // generate a dictionary of possibles images: true: the image is fake , false: the image is real
     private void getImages() {
     	
         try {
@@ -106,10 +101,10 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 			file_path  = file_path  + "\\src\\main\\java\\com\\pip\\deepfakes\\views\\erkennediedeepfakes\\erkennediedeepfakesquestions.txt";
 			file_path = file_path.replace("\\", "/");
 			
-			File file=new File(file_path);    //creates a new file instance  
-			FileReader fr=new FileReader(file);   //reads the file  
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
-			StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters  
+			File file=new File(file_path);    // creates a new file instance
+			FileReader fr=new FileReader(file);   // reads the file
+			BufferedReader br=new BufferedReader(fr);  // creates a buffering character input stream
+			StringBuffer sb=new StringBuffer();    // constructs a string buffer with no characters
 			String line;  
 			
 			
@@ -141,9 +136,9 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 					}
 				}
 			}
-			
-			fr.close();    //closes the stream and release the resources  
-			Collections.shuffle(this.imasgesDictionary);
+			System.out.print("Images Dictionary Size: ");
+			System.out.println(imasgesDictionary.size());
+			fr.close();    //closes the stream and release the resources
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

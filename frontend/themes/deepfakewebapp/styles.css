@@ -24,12 +24,27 @@ h1{
     color:white;
 }
 h2{
-    color:#04B486;
+    color:#24b45c;
     align-self: center;
 }
 h5{
-    color:black;
+    color:#24b45c;
+    align-self: center;
 }
 h3{
-    color:black;
+    color:#8292a8;
+    align-self: center;
+}
+vaadin-horizontal-layout{
+    align-self: center;
+    background-color:#24344c;
+
+}
+
+vaadin-checkbox{
+    color:#8292a8;
+    background-color:#04B486;
+}
+vaadin-vertical-layout{
+    background-color:#24344c;
 }

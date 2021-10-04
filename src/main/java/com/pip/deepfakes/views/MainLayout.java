@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import com.vaadin.cdi.annotation.UIScoped;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentUtil;
@@ -23,6 +24,7 @@ import com.vaadin.flow.component.progressbar.ProgressBarVariant;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
+import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
 import com.pip.deepfakes.views.wirbrauchendeinehilfe.WirbrauchendeineHilfeView;
@@ -32,6 +34,7 @@ import com.pip.deepfakes.views.erkennediedeepfakes.ErkennedieDeepfakesView;
 import com.pip.deepfakes.views.ueberfuehredenboesewicht.UeberfuehredenBoesewichtView;
 import com.pip.deepfakes.views.dankeschoen.DankeschoenView;
 import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.spring.annotation.UIScope;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.component.avatar.Avatar;
@@ -39,6 +42,7 @@ import com.vaadin.flow.component.avatar.Avatar;
 /**
  * The main view is a top-level placeholder for other views.
  */
+@PreserveOnRefresh
 @PWA(name = "Deepfake Webapp", shortName = "Deepfake Webapp", enableInstallPrompt = false)
 @Theme(themeFolder = "deepfakewebapp", variant = Lumo.DARK)
 @PageTitle("Main")

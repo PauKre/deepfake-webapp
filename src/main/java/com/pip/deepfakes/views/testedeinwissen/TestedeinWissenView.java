@@ -35,6 +35,7 @@ public class TestedeinWissenView extends LitTemplate {
 
 	@Id("questionId")
     private H5 questionId;
+
     @Id("questionResId ")
     private CheckboxGroup questionResId;
 
@@ -43,6 +44,9 @@ public class TestedeinWissenView extends LitTemplate {
 
 	@Id("resultsText")
 	private H5 resultsText;
+
+	@Id("learnButton")
+	private Button learnButton;
 
 	private ArrayList<Checkbox> checkboxes;
 
@@ -66,7 +70,9 @@ public class TestedeinWissenView extends LitTemplate {
      */
     public TestedeinWissenView() {
 		this.getQuestions();
-
+		learnButton.addClickListener(event -> {
+			learnButton.getUI().ifPresent(ui -> ui.navigate("learn"));
+		});
         // You can initialise any data required for the connected UI components here.;
 		//questionResId
 		this.getQuestion(this.nextQuest);

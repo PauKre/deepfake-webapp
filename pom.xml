@@ -152,6 +152,11 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-cdi</artifactId>
+            <version>11.2.1</version>
+        </dependency>
     </dependencies>
 
     <build>

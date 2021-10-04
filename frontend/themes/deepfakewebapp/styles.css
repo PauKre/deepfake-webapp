@@ -48,3 +48,7 @@ vaadin-checkbox{
 vaadin-vertical-layout{
     background-color:#24344c;
 }
+
+.click{
+    cursor: pointer;
+}

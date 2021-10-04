@@ -45,7 +45,7 @@ import com.vaadin.flow.component.avatar.Avatar;
 public class MainLayout extends AppLayout {
 
     // progress bar on top
-    public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 0.0);
+    public static ProgressBar learnprogress = new ProgressBar(1.0, 6.0, 1.0);
 
     public static final Tabs tabs = new Tabs();
 
@@ -59,7 +59,8 @@ public class MainLayout extends AppLayout {
         double value = learnprogress.getValue() + 1;
         // && !clickedTabs[tabs.getSelectedIndex()]
         // clickedTabs[tabs.getSelectedIndex()] = true;
-        if (value <= learnprogress.getMax()){
+        if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]){
+            clickedTabs[tabs.getSelectedIndex()] = true;
             learnprogress.setValue(value);
         }
     }

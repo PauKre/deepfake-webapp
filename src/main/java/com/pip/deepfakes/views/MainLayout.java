@@ -5,15 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import com.vaadin.cdi.annotation.UIScoped;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.NativeButton;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
@@ -23,7 +20,6 @@ import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.progressbar.ProgressBarVariant;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
-import com.vaadin.flow.component.tabs.TabsVariant;
 import com.vaadin.flow.router.PreserveOnRefresh;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
@@ -34,7 +30,6 @@ import com.pip.deepfakes.views.erkennediedeepfakes.ErkennedieDeepfakesView;
 import com.pip.deepfakes.views.ueberfuehredenboesewicht.UeberfuehredenBoesewichtView;
 import com.pip.deepfakes.views.dankeschoen.DankeschoenView;
 import com.vaadin.flow.server.PWA;
-import com.vaadin.flow.spring.annotation.UIScope;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.component.avatar.Avatar;
@@ -59,7 +54,10 @@ public class MainLayout extends AppLayout {
     // listener for page switches
     //public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
 
-    public static void makeProgress(){
+    public static void makeProgress(int i){
+        tabs_instances.get(i).setEnabled(true);
+        tabs.setSelectedTab(tabs_instances.get(i));
+        System.out.println(tabs_instances.get(i));
         double value = learnprogress.getValue() + 1;
         // && !clickedTabs[tabs.getSelectedIndex()]
         // clickedTabs[tabs.getSelectedIndex()] = true;

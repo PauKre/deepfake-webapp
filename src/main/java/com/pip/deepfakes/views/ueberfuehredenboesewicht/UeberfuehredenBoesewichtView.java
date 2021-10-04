@@ -59,8 +59,9 @@ public class UeberfuehredenBoesewichtView extends LitTemplate {
         tater3.setVisible(true);
         tater4.setVisible(true);
         tater2.addClickListener(event -> {
+            MainLayout.tabs.setSelectedTab(MainLayout.tabs_instances.get(4));
             tater2.getUI().ifPresent(ui -> ui.navigate("thankyou"));
-            MainLayout.makeProgress();
+            MainLayout.makeProgress(5);
         });
         tater1.addClickListener(imageClickEvent -> handleWrongDecision());
         tater3.addClickListener(imageClickEvent -> handleWrongDecision());

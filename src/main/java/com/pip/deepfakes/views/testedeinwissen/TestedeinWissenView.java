@@ -6,7 +6,6 @@ import com.vaadin.flow.component.checkbox.CheckboxGroup;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H5;
-import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.template.Id;
@@ -107,7 +106,7 @@ public class TestedeinWissenView extends LitTemplate {
 			resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
 			continueButton.addClickListener(event -> {
 				continueButton.getUI().ifPresent(ui -> ui.navigate("detect"));
-				MainLayout.makeProgress();
+				MainLayout.makeProgress(3);
 			});
 		}else{
 			String textForDisplay= "Du hast " + correct_answers + " von 9 Fragen richtig beantwortet. Versuche es noch einmal!";
@@ -200,10 +199,6 @@ public class TestedeinWissenView extends LitTemplate {
 		ArrayList<String> posssibleResponses = nextQuestionsDictionary.get(quesResp);
 		for (int i = 0; i < 3; i++){
 			checkboxes.get(i).setLabel(posssibleResponses.get(i));
-//			checkboxes.get(i).getStyle().set("background-color", "#B02E0C");
-//			checkboxes.get(i).getStyle().set("flex-grow", "0");
-//			checkboxes.get(i).getStyle().set("flex-shrink", "1");
-//			checkboxes.get(i).getStyle().set("margin", "var(--lumo-space-s)");
 			checkboxes.get(i).getStyle().set("value", posssibleResponses.get(i));
 			//PropertyDescriptor<String, String> VALUE = PropertyDescriptors.attributeWithDefault("value", response);
 			//vaadinCheckbox.set(PropertyDescriptors.attributeWithDefault("value",response),  response);

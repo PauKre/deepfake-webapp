@@ -23,7 +23,7 @@ public class LerneetwasueberDeepfakesView extends LitTemplate {
     public LerneetwasueberDeepfakesView() {
         continueButton.addClickListener(event -> {
             continueButton.getUI().ifPresent(ui -> ui.navigate("quiz"));
-            MainLayout.makeProgress();
+            MainLayout.makeProgress(2);
         });
     }
 }

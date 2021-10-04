@@ -1,8 +1,6 @@
 package com.pip.deepfakes.views.erkennediedeepfakes;
 
-import com.sun.tools.javac.Main;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.littemplate.LitTemplate;
@@ -11,7 +9,6 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.pip.deepfakes.views.MainLayout;
-import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import java.util.*;
@@ -79,7 +76,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 		dialog.close();
 		if(currentImg==11){
 			echtBttnId.getUI().ifPresent(ui -> ui.navigate("solve"));
-			MainLayout.makeProgress();
+			MainLayout.makeProgress(4);
 		}
 	}
 

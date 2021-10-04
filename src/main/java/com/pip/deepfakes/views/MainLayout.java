@@ -136,9 +136,15 @@ public class MainLayout extends AppLayout {
         Arrays.fill(clickedTabs, Boolean.FALSE);
 
         tabs.getStyle().set("max-width", "100%");
+        boolean isFirst = true;
         for (Tab menuTab : createMenuItems()) {
             tabs.add(menuTab);
-            menuTab.setEnabled(false);
+            if(!isFirst){
+                menuTab.setEnabled(false);
+            }else{
+                isFirst = false;
+            }
+
             tabs_instances.add(menuTab);
         }
         return tabs;

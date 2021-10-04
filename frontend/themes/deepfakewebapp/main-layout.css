@@ -1,5 +1,6 @@
 .topmenu-header {
   height: var(--lumo-size-xl);
+  color: #8EB1C7;
 }
 .topmenu-header h1 {
   font-size: var(--lumo-font-size-l);

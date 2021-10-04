@@ -126,7 +126,7 @@ public class MainLayout extends AppLayout {
         tabs.addSelectedChangeListener(listener);
         tabs.getStyle().set("max-width", "100%");
         for (Tab menuTab : createMenuItems()) {
-            menuTab.setEnabled(false);
+//            menuTab.setEnabled(false);
             tabs.add(menuTab);
         }
         return tabs;

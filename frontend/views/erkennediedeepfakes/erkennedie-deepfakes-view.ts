@@ -15,8 +15,7 @@ export class ErkennedieDeepfakesView extends LitElement {
   render() {
     return html`
 <vaadin-horizontal-layout class="content" style="width: 100%; align-items: flex-start; justify-content: center; height: 100%;">
- <vaadin-vertical-layout theme="spacing" style="align-self: flex-start; align-items: center; justify-content: flex-start; width: 5%;"></vaadin-vertical-layout>
- <vaadin-vertical-layout style="align-self: center; align-items: center; justify-content: center; width: 70%; height: 100%; padding: var(--lumo-space-m);">
+ <vaadin-vertical-layout style="align-self: center; align-items: center; justify-content: center; width: 70%; height: 90%; padding: var(--lumo-space-m);">
   <h2>Werde zum Deepfake Experten!</h2>
   <h3>Trainiere deine F&auml;higkeit Deepfakes zu erkennen!</h3>
   <img id="imageId" style="width: 50%; height: 50%; align-self: center;">
@@ -29,7 +28,6 @@ export class ErkennedieDeepfakesView extends LitElement {
    </vaadin-button>
   </vaadin-horizontal-layout>
  </vaadin-vertical-layout>
- <vaadin-vertical-layout theme="spacing" style="align-self: flex-start; align-items: center; justify-content: flex-start; width: 15%;"></vaadin-vertical-layout>
 </vaadin-horizontal-layout>
 `;
   }

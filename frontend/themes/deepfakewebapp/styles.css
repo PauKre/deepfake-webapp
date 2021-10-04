@@ -24,6 +24,7 @@ h1{
     color:white;
 }
 h2{
+    margin-top: 10px;
     color:#24b45c;
     align-self: center;
 }
@@ -46,6 +47,7 @@ vaadin-checkbox{
     background-color:#04B486;
 }
 vaadin-vertical-layout{
+    padding-top: 0px;
     background-color:#24344c;
 }
 

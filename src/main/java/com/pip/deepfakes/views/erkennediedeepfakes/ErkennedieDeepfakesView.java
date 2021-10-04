@@ -41,14 +41,11 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         this.getImages();
         
         this.getImg(this.nextImg);
-		this.fakeBttnId.addClickListener(event -> handleGuess(true));
-		this.echtBttnId.addClickListener(event -> handleGuess(false));
+		this.fakeBttnId.addClickListener(event -> showResult(true));
+		this.echtBttnId.addClickListener(event -> showResult(false));
     }
 
-	private void handleGuess(boolean guess) {
-		showResult(guess);
-		getImg(this.nextImg);
-	}
+
 
 	private void showResult(Boolean choice){
 
@@ -72,9 +69,16 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 		dialog.add(t);
         
         dialog.open();
+
+		dialog.addDialogCloseActionListener(dialogCloseActionEvent -> handleClose(dialog));
     }
 
-    private void getImg(int indx){
+	private void handleClose(Dialog dialog) {
+		getImg(nextImg);
+		dialog.close();
+	}
+
+	private void getImg(int indx){
         indx = ++indx % imasgesDictionary.size();
 
 		this.nextImg = indx + 1;

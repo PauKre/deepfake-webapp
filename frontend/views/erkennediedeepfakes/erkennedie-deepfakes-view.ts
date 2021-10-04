@@ -21,17 +21,11 @@ export class ErkennedieDeepfakesView extends LitElement {
   <h3>Trainiere deine F&auml;higkeit Deepfakes zu erkennen!</h3>
   <img id="imageId" style="width: 50%; height: 50%; align-self: center;">
   <vaadin-horizontal-layout theme="spacing" style="flex-grow: 1; flex-shrink: 1; width: 100%; justify-content: center; height: 10%;">
-   <vaadin-button id="prevImgBttnId" >
-     Vorherige Frage 
-   </vaadin-button>
-   <vaadin-button id="fakeBttnId" >
+    <vaadin-button id="fakeBttnId" >
      Fake 
    </vaadin-button>
    <vaadin-button id="echtBttnId" >
      Echt 
-   </vaadin-button>
-   <vaadin-button  id="nextImgBttnId">
-     N&auml;chste Frage
    </vaadin-button>
   </vaadin-horizontal-layout>
  </vaadin-vertical-layout>

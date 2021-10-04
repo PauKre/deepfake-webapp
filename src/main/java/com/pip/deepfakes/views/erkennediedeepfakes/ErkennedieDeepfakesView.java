@@ -59,9 +59,6 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         String reason = currentImgDictionary.values().iterator().next();
 
         Dialog dialog = new Dialog();
-        //dialog.add(html);
-        
-        //dialog.getElement().getStyle().set("justify-content", "center");
         
         TextArea t = new TextArea();
 		t.setEnabled(false);
@@ -73,8 +70,6 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 		}
 
 		dialog.add(t);
-        
-        //dialog.getElement().getStyle().set("margin", "var(--lumo-space-s)");
         
         dialog.open();
     }
@@ -91,7 +86,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         this.imageId.getElement().setAttribute("src", imgName);
     }
 
-    // generate a dictionary of possibles images: true: the image is facke , false: the image is echt
+    // generate a dictionary of possibles images: true: the image is fake , false: the image is real
     private void getImages() {
     	
         try {
@@ -100,10 +95,10 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 			file_path  = file_path  + "\\src\\main\\java\\com\\pip\\deepfakes\\views\\erkennediedeepfakes\\erkennediedeepfakesquestions.txt";
 			file_path = file_path.replace("\\", "/");
 			
-			File file=new File(file_path);    //creates a new file instance  
-			FileReader fr=new FileReader(file);   //reads the file  
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
-			StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters  
+			File file=new File(file_path);    // creates a new file instance
+			FileReader fr=new FileReader(file);   // reads the file
+			BufferedReader br=new BufferedReader(fr);  // creates a buffering character input stream
+			StringBuffer sb=new StringBuffer();    // constructs a string buffer with no characters
 			String line;  
 			
 			

@@ -2,53 +2,53 @@ Was sind Deepfakes ?
 Bilder, die mit Photoshop bearbeitet wurden
 Bilder und Videos, die mit Hilfe von künstlicher Intelligenz hergestellt wurden
 Hacker im Internet, die künstliche Intelligenz nutzen
-Antwort 2 ist richtig. | Deepfakes sind Bilder und Videos, die mit Hilfe von künstlicher Intelligenz hergestellt wurden.
+Antwort 2 ist richtig. |Deepfakes sind Bilder und Videos, die mit Hilfe von künstlicher Intelligenz hergestellt wurden.
 Next-Question
 Womit werden Deepfakes erstellt ?
 Neuronalen Netzen
 Instagram
 FaceTune
-Antwort 1 ist richtig. | Bei der Erstellung von Deepfakes werden Neuronale Netze genutzt.
+Antwort 1 ist richtig. |Bei der Erstellung von Deepfakes werden Neuronale Netze genutzt.
 Next-Question
 Warum wird es immer einfacher Deepfakes zu erstellen ?
 Es gibt viele Tutorials auf YouTube dazu
 Mittlerweile kann man Deepfakes ganz einfach mit Apps oder Software aus dem Internet erstellen
 Selfie-Kameras erstellen automatisch Deepfakes beim Filmen
-Antwort 2 ist richtig. | Heutzutage kann man im Internet Apps oder Software herunterladen, mit der man einfach Deepfakes erstellen kann. Wir haben beispielsweis unsere Deepfakes mit der Software „Animaze“ erstellt. Diese kann man einfach im Internet downloaden.
+Antwort 2 ist richtig. |Heutzutage kann man im Internet Apps oder Software herunterladen, mit der man einfach Deepfakes erstellen kann. Wir haben beispielsweis unsere Deepfakes mit der Software „Animaze“ erstellt. Diese kann man einfach im Internet downloaden.
 Next-Question
 Was ist ein Bild aus der mathematischen Sicht ?
 Eine Matrix aus Zahlen, die Signale repräsentieren
 Eine Menge aus Funktionen, die für verschiedene Farben stehen
 Eine Schar von Graphen, die sich zu einem Objekt überlappen
-Antwort 1 ist richtig. | Aus der mathematischen Sicht besteht ein Bild aus Zahlen, die verschiedene Signale repräsentieren.
+Antwort 1 ist richtig. |Aus der mathematischen Sicht besteht ein Bild aus Zahlen, die verschiedene Signale repräsentieren.
 Next-Question
 Was für eine Art von Neuronalen Netzen wird verwendet, um ein Deepfake in ein Video einzubauen ?
 AGBs
 AGTs
 GANs
-Antwort 3 ist richtig. | Zum Erzeugen von Deepfakes werden sogenannte GANs genutzt.
+Antwort 3 ist richtig. |Zum Erzeugen von Deepfakes werden sogenannte GANs genutzt.
 Next-Question
 Was sind Merkmale an denen man erkennen kann, ob ein Foto oder Video gefälscht wurde ?
 Die Hintergrundfarbe ist immer grün
 Ohren oder Haare sind seltsam geformt
 Die Person wackelt immer mit den Ohren
-Antwort 2 ist richtig. | Meist sind bei Deepfakes die Ohren oder Haare seltsam geformt oder einige Regionen wie die Mundwinkel sind unscharf.
+Antwort 2 ist richtig. |Meist sind bei Deepfakes die Ohren oder Haare seltsam geformt oder einige Regionen wie die Mundwinkel sind unscharf.
 Next-Question
 Wo werden Deepfakes kommerziell eingesetzt ?
 In der Kunst- und Filmbranche
 In der Gastronomie
 In der Baubranche
-Antwort 1 ist richtig. | Deepfakes werden häufig in der Kunst- und Filmbranche eingesetzt. Im Star Wars Film Rogue One (2016) zum Beispiel wurden Bildmaterialien aus dem Orginalfilm von 1977 benutzt um eine realistische, junge Prinzessin Leia im neuen Film zeigen zu können.
+Antwort 1 ist richtig. |Deepfakes werden häufig in der Kunst- und Filmbranche eingesetzt. Im Star Wars Film Rogue One (2016) zum Beispiel wurden Bildmaterialien aus dem Orginalfilm von 1977 benutzt um eine realistische, junge Prinzessin Leia im neuen Film zeigen zu können.
 Next-Question
 Wozu werden Deepfakes häufig missbraucht ?
 Virus im Internet verbreiten
 Propaganda
 Persönliche Daten von privaten Rechnern stehlen
-Antwort 2 ist richtig. | Deepfakes werden manchmal für Propaganda missbraucht.
+Antwort 2 ist richtig. |Deepfakes werden manchmal für Propaganda missbraucht.
 Next-Question
 Warum wird es immer schwieriger Deepfakes zu erkennen ?
 Die Bildqualität wird bei den Aufnahmen heutzutage immer besser
 Es ist einfach Deepfakes zu erkennen
 Die Programme mit denen Deepfakes erstellt werden, werden immer besser und Rechner werden immer leistungsfähiger
-Antwort 3 ist richtig. | Dadurch das Programme mit denen Deepfakes erstellt werden, immer besser und Rechner immer leistungsfähiger werden, wird es immer schwieriger Deepfakes zu erkennen.
+Antwort 3 ist richtig. |Dadurch das Programme mit denen Deepfakes erstellt werden, immer besser und Rechner immer leistungsfähiger werden, wird es immer schwieriger Deepfakes zu erkennen.
 Next-Question

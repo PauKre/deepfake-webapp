@@ -161,15 +161,15 @@ public class TestedeinWissenView extends LitTemplate {
 		String respomse = questi_response .values().iterator().next();
 				
 		Dialog dialog = new Dialog();
-		String[] respomse_list = respomse.split("\\|");
+		String[] response_list = respomse.split("\\|");
 		
 		TextArea t = new TextArea();
 		t.setEnabled(false);
 		t.setWidth("400px");
-		t.setValue(respomse_list[0] + "\n" + respomse_list[1]);
+		t.setValue(response_list[1]);
 		dialog.add(t);
 		
-		//String result = "<div>" + respomse_list[0] + "<br>" + respomse_list[1] + "</div>";  
+		//String result = "<div>" + response_list[0] + "<br>" + response_list[1] + "</div>";
         //Html html = new Html(result);
         //dialog.add(html);
 		

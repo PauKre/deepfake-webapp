@@ -59,7 +59,6 @@ public class MainLayout extends AppLayout {
     public static void makeProgress(int i){
         tabs_instances.get(i).setEnabled(true);
         tabs.setSelectedTab(tabs_instances.get(i));
-        System.out.println(tabs_instances.get(i));
         double value = learnprogress.getValue() + 1;
         if (value <= learnprogress.getMax() && !clickedTabs[tabs.getSelectedIndex()]){
             clickedTabs[tabs.getSelectedIndex()] = true;
@@ -155,11 +154,6 @@ public class MainLayout extends AppLayout {
      * make progress on page switch, but only if it hasn't been clicked yet
      * TODO: extend the listener to correct page change behavior and build in barriers to impose the order of the learning platform
      */
-    private void createListener(){
-        listener = selectedChangeEvent -> {
-                System.out.println("Pferd"); //Was??
-            };
-    }
 
     private List<Tab> createMenuItems() {
         MenuItemInfo[] menuItems = new MenuItemInfo[]{ //

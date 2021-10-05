@@ -136,8 +136,6 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 					}
 				}
 			}
-			System.out.print("Images Dictionary Size: ");
-			System.out.println(imasgesDictionary.size());
 			fr.close();    //closes the stream and release the resources
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

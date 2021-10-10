@@ -202,6 +202,14 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.4</version>
+                <configuration>
+                    <appName>df-webapp</appName>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

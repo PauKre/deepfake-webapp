@@ -125,7 +125,6 @@ public class MainLayout extends AppLayout {
 
         String file_path  = "\\app\\target\\classes\\com\\pip\\deepfakes\\views\\res\\logo.png";
         file_path = file_path.replace("\\", "/");
-        System.out.println("HELLO");
         System.out.println(file_path);
         logger.log(Level.SEVERE, file_path);
         Image logo = new Image(file_path, "Deepfakes Webapp logo");

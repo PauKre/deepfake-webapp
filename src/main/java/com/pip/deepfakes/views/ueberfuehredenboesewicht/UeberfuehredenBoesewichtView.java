@@ -12,6 +12,8 @@ import com.pip.deepfakes.views.MainLayout;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 
+import javax.inject.Inject;
+
 @PageTitle("Überführe den Bösewicht")
 @Route(value = "solve", layout = MainLayout.class)
 @Tag("ueberfuehreden-boesewicht-view")
@@ -20,6 +22,9 @@ public class UeberfuehredenBoesewichtView extends LitTemplate {
 
     // This is the Java companion file of a design
     // You can find the design file inside /frontend/views/
+
+    @Inject
+    private MainLayout mainLayout;
 
     @Id("taeter1")
     private Image tater1;
@@ -59,9 +64,9 @@ public class UeberfuehredenBoesewichtView extends LitTemplate {
         tater3.setVisible(true);
         tater4.setVisible(true);
         tater2.addClickListener(event -> {
-            MainLayout.tabs.setSelectedTab(MainLayout.tabs_instances.get(4));
+            mainLayout.tabs.setSelectedTab(mainLayout.tabs_instances.get(4));
             tater2.getUI().ifPresent(ui -> ui.navigate("thankyou"));
-            MainLayout.makeProgress(5);
+            mainLayout.makeProgress(5);
         });
         tater1.addClickListener(imageClickEvent -> handleWrongDecision());
         tater3.addClickListener(imageClickEvent -> handleWrongDecision());

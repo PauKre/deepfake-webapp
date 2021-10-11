@@ -1,5 +1,6 @@
 package com.pip.deepfakes.views.erkennediedeepfakes;
 
+import com.vaadin.cdi.annotation.UIScoped;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Image;
@@ -18,6 +19,7 @@ import java.io.*;
 @Route(value = "detect", layout = MainLayout.class)
 @Tag("erkennedie-deepfakes-view")
 @JsModule("./views/erkennediedeepfakes/erkennedie-deepfakes-view.ts")
+
 public class ErkennedieDeepfakesView extends LitTemplate {
     ArrayList<HashMap<HashMap<String, Boolean>,  String>> imasgesDictionary = new ArrayList< HashMap <HashMap<String, Boolean>, String>>();
 	//private ArrayList<HashMap<String, Boolean>> imasgesDictionary = new ArrayList<HashMap<String, Boolean>>();
@@ -76,7 +78,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 		dialog.close();
 		if(currentImg==11){
 			echtBttnId.getUI().ifPresent(ui -> ui.navigate("solve"));
-			MainLayout.makeProgress(4);
+//			MainLayout.makeProgress(4);
 		}
 	}
 

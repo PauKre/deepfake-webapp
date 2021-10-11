@@ -1,5 +1,6 @@
 package com.pip.deepfakes.views.testedeinwissen;
 
+import com.vaadin.cdi.annotation.UIScoped;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.checkbox.CheckboxGroup;
@@ -17,6 +18,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dialog.Dialog;
 //import com.vaadin.flow.component.charts.model.style.Style;
+import javax.inject.Inject;
 import java.util.*;
 import java.io.*;
 
@@ -24,7 +26,11 @@ import java.io.*;
 @Route(value = "quiz", layout = MainLayout.class)
 @Tag("testedein-wissen-view")
 @JsModule("./views/testedeinwissen/testedein-wissen-view.ts")
+
 public class TestedeinWissenView extends LitTemplate {
+
+    @Inject
+    private MainLayout mainLayout;
 
     @Id("becomeExpert")
     private H2 becomeExpert;
@@ -106,9 +112,9 @@ public class TestedeinWissenView extends LitTemplate {
             resultsText.setText("Du hast alle Fragen richtig beantwortet! Du bist bereit den nächsten Schritt zu machen!");
             resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
             continueButton.addClickListener(event -> {
-                MainLayout.tabs.setSelectedTab(MainLayout.tabs_instances.get(2));
+                mainLayout.tabs.setSelectedTab(mainLayout.tabs_instances.get(2));
                 continueButton.getUI().ifPresent(ui -> ui.navigate("detect"));
-                MainLayout.makeProgress(3);
+                mainLayout.makeProgress(3);
             });
         } else {
             String textForDisplay = "Du hast " + correct_answers + " von 9 Fragen richtig beantwortet. Versuche es noch einmal!";

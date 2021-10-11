@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import com.vaadin.cdi.annotation.UIScoped;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.ComponentUtil;
@@ -33,30 +34,34 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.component.avatar.Avatar;
+import org.springframework.beans.factory.InitializingBean;
+
+import javax.annotation.PostConstruct;
 
 /**
  * The main view is a top-level placeholder for other views.
  */
-@PreserveOnRefresh
+//@PreserveOnRefresh
 @PWA(name = "Deepfake Webapp", shortName = "Deepfake Webapp", enableInstallPrompt = false)
 @Theme(themeFolder = "deepfakewebapp", variant = Lumo.DARK)
 @PageTitle("Main")
-public class MainLayout extends AppLayout {
+@org.springframework.stereotype.Component
+public class MainLayout extends AppLayout{
 
     // progress bar on top
-    public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 1.0);
+    public ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 1.0);
 
-    public static final Tabs tabs = new Tabs();
+    public final Tabs tabs = new Tabs();
 
     // keep track of pages visited (correct progress bar behaviour)
-    public static Boolean[] clickedTabs = new Boolean[6];
+    public Boolean[] clickedTabs = new Boolean[6];
 
-    public static ArrayList<Tab> tabs_instances = new ArrayList<>();
+    public ArrayList<Tab> tabs_instances = new ArrayList<>();
 
     // listener for page switches
-    public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
+    public ComponentEventListener<Tabs.SelectedChangeEvent> listener;
 
-    public static void makeProgress(int i){
+    public void makeProgress(int i){
         tabs_instances.get(i).setEnabled(true);
         tabs.setSelectedTab(tabs_instances.get(i));
         double value = learnprogress.getValue() + 1;
@@ -64,6 +69,13 @@ public class MainLayout extends AppLayout {
             clickedTabs[tabs.getSelectedIndex()] = true;
             learnprogress.setValue(value);
         }
+    }
+
+    @PostConstruct
+    public void init(){
+        HorizontalLayout header = createHeader();
+        menu = createMenuTabs();
+        addToNavbar(createTopBar(header, menu));
     }
 
     public static class MenuItemInfo {
@@ -92,13 +104,7 @@ public class MainLayout extends AppLayout {
 
     }
 
-    private final Tabs menu;
-
-    public MainLayout() {
-        HorizontalLayout header = createHeader();
-        menu = createMenuTabs();
-        addToNavbar(createTopBar(header, menu));
-    }
+    private Tabs menu;
 
     private VerticalLayout createTopBar(HorizontalLayout header, Tabs menu) {
         VerticalLayout layout = new VerticalLayout();

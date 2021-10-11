@@ -1,5 +1,6 @@
 package com.pip.deepfakes.views.lerneetwasueberdeepfakes;
 
+import com.vaadin.cdi.annotation.UIScoped;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Main;
 import com.vaadin.flow.component.littemplate.LitTemplate;
@@ -10,10 +11,13 @@ import com.pip.deepfakes.views.MainLayout;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 
+import javax.inject.Inject;
+
 @PageTitle("Lerne etwas über Deepfakes")
 @Route(value = "learn", layout = MainLayout.class)
 @Tag("lerneetwasueber-deepfakes-view")
 @JsModule("./views/lerneetwasueberdeepfakes/lerneetwasueber-deepfakes-view.ts")
+
 public class LerneetwasueberDeepfakesView extends LitTemplate {
 
     @Id("ContinueId")
@@ -21,11 +25,14 @@ public class LerneetwasueberDeepfakesView extends LitTemplate {
     // This is the Java companion file of a design
     // You can find the design file inside /frontend/views/
 
+    @Inject
+    private MainLayout mainLayout;
+
     public LerneetwasueberDeepfakesView() {
         continueButton.addClickListener(event -> {
 
             continueButton.getUI().ifPresent(ui -> ui.navigate("quiz"));
-            MainLayout.makeProgress(2);
+            mainLayout.makeProgress(2);
         });
     }
 }

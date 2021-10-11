@@ -5,17 +5,21 @@
 @import url('./views/erkennedie-deepfakes-view.css');
 @import url('./views/ueberfuehreden-boesewicht-view.css');
 @import url('./views/dankeschoen-view.css');
+@import url('lumo-css-framework/all-classes.css');
+@import url('line-awesome/dist/line-awesome/css/line-awesome.min.css');
 
 vaadin-button{
     color:#233348 ;
     background-color:#04B486;
     align-self: center;
     width: 100%;
+    margin: var(--lumo-space-m);
 }
 
 vaadin-checkbox{
     background-color:#8EB1C7;
     color: #233348;
+    margin: var(--lumo-space-s);
 }
 h1{
     color:white;

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <!-- Vaadin project from https://start.vaadin.com/project/6e4f538a-6b6c-47a7-b20a-78dfa4bd013a -->
     <groupId>com.pip.deepfakes</groupId>
@@ -157,6 +158,13 @@
             <artifactId>vaadin-cdi</artifactId>
             <version>11.2.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.2.0</version>
+
+        </dependency>
     </dependencies>
 
     <build>
@@ -198,7 +206,9 @@
                     <execution>
                         <id>copy-dependencies</id>
                         <phase>package</phase>
-                        <goals><goal>copy-dependencies</goal></goals>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -208,6 +218,19 @@
                 <version>3.0.4</version>
                 <configuration>
                     <appName>df-webapp</appName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <outputDirectory>target/classes/com/pip/deepfakes/views/res</outputDirectory>
+                    <resources>
+                        <resource>
+                            <directory>src/main/java/com/pip/deepfakes/views/res</directory>
+                            <filtering>true</filtering>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
         </plugins>

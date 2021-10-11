@@ -25,7 +25,7 @@ public class LerneetwasueberDeepfakesView extends LitTemplate {
         continueButton.addClickListener(event -> {
 
             continueButton.getUI().ifPresent(ui -> ui.navigate("quiz"));
-            MainLayout.makeProgress(2);
+//            MainLayout.makeProgress(2);
         });
     }
 }

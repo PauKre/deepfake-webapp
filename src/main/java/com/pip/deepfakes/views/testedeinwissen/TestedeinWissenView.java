@@ -106,9 +106,9 @@ public class TestedeinWissenView extends LitTemplate {
             resultsText.setText("Du hast alle Fragen richtig beantwortet! Du bist bereit den nächsten Schritt zu machen!");
             resultsHeader.setText("Herzlichen Glückwunsch! Du hast es geschafft!");
             continueButton.addClickListener(event -> {
-                MainLayout.tabs.setSelectedTab(MainLayout.tabs_instances.get(2));
+//                MainLayout.tabs.setSelectedTab(MainLayout.tabs_instances.get(2));
                 continueButton.getUI().ifPresent(ui -> ui.navigate("detect"));
-                MainLayout.makeProgress(3);
+                // MainLayout.makeProgress(3);
             });
         } else {
             String textForDisplay = "Du hast " + correct_answers + " von 9 Fragen richtig beantwortet. Versuche es noch einmal!";
@@ -208,7 +208,7 @@ public class TestedeinWissenView extends LitTemplate {
         try {
 
             String file_path = new File(".").getCanonicalPath();
-            file_path = file_path + "\\src\\main\\java\\com\\pip\\deepfakes\\views\\testedeinwissen\\testedeinwissenquestions.txt";
+            file_path = file_path + "\\target\\classes\\com\\pip\\deepfakes\\views\\res\\testedeinwissenquestions.txt";
             file_path = file_path.replace("\\", "/");
 
             File file = new File(file_path);    //creates a new file instance

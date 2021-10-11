@@ -1,9 +1,13 @@
 package com.pip.deepfakes.views;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -44,19 +48,19 @@ import com.vaadin.flow.component.avatar.Avatar;
 public class MainLayout extends AppLayout {
 
     // progress bar on top
-    public static ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 1.0);
-
-    public static final Tabs tabs = new Tabs();
+    public ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 1.0);
+    private final static Logger logger = Logger.getLogger(MainLayout.class.getName());
+    public final Tabs tabs = new Tabs();
 
     // keep track of pages visited (correct progress bar behaviour)
-    public static Boolean[] clickedTabs = new Boolean[6];
+    public Boolean[] clickedTabs = new Boolean[6];
 
-    public static ArrayList<Tab> tabs_instances = new ArrayList<>();
+    public ArrayList<Tab> tabs_instances = new ArrayList<>();
 
     // listener for page switches
-    public static ComponentEventListener<Tabs.SelectedChangeEvent> listener;
+    public ComponentEventListener<Tabs.SelectedChangeEvent> listener;
 
-    public static void makeProgress(int i){
+    public void makeProgress(int i){
         tabs_instances.get(i).setEnabled(true);
         tabs.setSelectedTab(tabs_instances.get(i));
         double value = learnprogress.getValue() + 1;
@@ -118,7 +122,13 @@ public class MainLayout extends AppLayout {
         layout.setSpacing(false);
         layout.setWidthFull();
         layout.setAlignItems(FlexComponent.Alignment.CENTER);
-        Image logo = new Image("images/logo.png", "Deepfakes Webapp logo");
+
+        String file_path  = "\\app\\target\\classes\\com\\pip\\deepfakes\\views\\res\\logo.png";
+        file_path = file_path.replace("\\", "/");
+        System.out.println("HELLO");
+        System.out.println(file_path);
+        logger.log(Level.SEVERE, file_path);
+        Image logo = new Image(file_path, "Deepfakes Webapp logo");
         logo.setId("logo");
         layout.add(logo);
         layout.add(new H1("Deepfakes Webapp"));
@@ -139,7 +149,7 @@ public class MainLayout extends AppLayout {
         for (Tab menuTab : createMenuItems()) {
             tabs.add(menuTab);
             if(!isFirst){
-                menuTab.setEnabled(false);
+//                menuTab.setEnabled(false);
             }else{
                 isFirst = false;
             }

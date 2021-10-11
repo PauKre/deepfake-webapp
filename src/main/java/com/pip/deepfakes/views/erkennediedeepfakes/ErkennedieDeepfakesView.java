@@ -76,7 +76,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 		dialog.close();
 		if(currentImg==11){
 			echtBttnId.getUI().ifPresent(ui -> ui.navigate("solve"));
-			MainLayout.makeProgress(4);
+//			MainLayout.makeProgress(4);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
         try {
 			
 			String file_path = new File(".").getCanonicalPath();
-			file_path  = file_path  + "\\src\\main\\java\\com\\pip\\deepfakes\\views\\erkennediedeepfakes\\erkennediedeepfakesquestions.txt";
+			file_path  = file_path  + "\\target\\classes\\com\\pip\\deepfakes\\views\\res\\erkennediedeepfakesquestions.txt";
 			file_path = file_path.replace("\\", "/");
 			
 			File file=new File(file_path);    // creates a new file instance
@@ -114,7 +114,7 @@ public class ErkennedieDeepfakesView extends LitTemplate {
 			while((line=br.readLine())!=null)  
 			{  
 				if (line.contains(".jpg") || line.contains(".png") || line.contains(".jpeg") || line.contains(".JPG") ) {
-					String images_files= "images/erkennediedeepfakes/"+line;
+					String images_files= "./target/classes/com/pip/deepfakes/views/res/images/erkennediedeepfakes/"+line;
 					if (line.contains("real")) {
 						imgResp.put(images_files, false);
 					}else {

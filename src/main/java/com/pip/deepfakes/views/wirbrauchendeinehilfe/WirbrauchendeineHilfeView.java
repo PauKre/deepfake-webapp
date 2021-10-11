@@ -1,6 +1,8 @@
 package com.pip.deepfakes.views.wirbrauchendeinehilfe;
 
 import com.vaadin.flow.component.littemplate.LitTemplate;
+import com.vaadin.flow.component.progressbar.ProgressBar;
+import com.vaadin.flow.component.progressbar.ProgressBarVariant;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.pip.deepfakes.views.MainLayout;
@@ -20,12 +22,15 @@ public class WirbrauchendeineHilfeView extends LitTemplate {
     @Id("StartId")
     private Button startButton;
 
+//    @Id("Progress")
+//    public ProgressBar learnprogress = new ProgressBar(0.0, 6.0, 1.0);
     // This is the Java companion file of a design
     // You can find the design file inside /frontend/views/
 	public WirbrauchendeineHilfeView() {
+//        learnprogress.addThemeVariants(ProgressBarVariant.LUMO_SUCCESS);
         startButton.addClickListener(event -> {
             startButton.getUI().ifPresent(ui -> ui.navigate("learn"));
-            MainLayout.makeProgress(1);
+//            MainLayout.makeProgress(1);
         });
 
 }
